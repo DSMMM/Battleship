@@ -72,7 +72,7 @@
                         <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.dsmmm.App</mainClass>
+                            <mainClass>com.dsmmm.battleships.client.App</mainClass>
                         </manifest>
                         <manifestEntries>
                             <mode>development</mode>
