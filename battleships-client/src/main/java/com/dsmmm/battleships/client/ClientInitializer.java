@@ -5,10 +5,7 @@ import java.net.*;
 import java.util.Scanner;
 
 public class ClientInitializer {
-    void clientSocket() {
-        Scanner into = new Scanner(System.in);
-        Printer.print("Podaj imię: ");
-        String imie = into.next();
+    void clientSocket(String name) {
         try (
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
                 Socket echoSocket = new Socket("vps624409.ovh.net", 8189);
@@ -35,7 +32,7 @@ public class ClientInitializer {
             });
             t.start();
             while ((userInput = stdIn.readLine()) != null) {
-                out.println(imie + " " + userInput);
+                out.println(name + " " + userInput);
             }
         } catch (IOException e) {
             Printer.print(e.getMessage());
