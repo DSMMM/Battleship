@@ -10,6 +10,10 @@ public class ServerInitializer {
             while (true) {
                 Socket incoming = s.accept();
                 System.out.println("Dołączyła pierwsza osoba");
+                OutputStream outStream = incoming.getOutputStream();
+                PrintWriter out = new PrintWriter(
+                        new OutputStreamWriter(outStream, "UTF-8"), true);
+                out.println("Connection established. Please wait for second user.");
                 Socket incoming2 = s.accept();                //OutputStream outStream = incoming.getOutputStream();
                 System.out.println("Stworzono chatroom");
                 Runnable r = new ThreadedEchoHandler(incoming, incoming2);
