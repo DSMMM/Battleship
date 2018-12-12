@@ -35,14 +35,15 @@ public class Controller {
     void join() {
         client = new ClientInitializer(nameId.getText());
         client.listenToServer(chatId);
+        joinId.setDisable(true);
+        nameId.setDisable(true);
     }
 
     @FXML
     void enter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             client.sendMessage(inputChat.getText());
+            inputChat.clear();
         }
     }
-
-
 }
