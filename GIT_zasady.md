@@ -22,6 +22,7 @@
 
 # Gałęzie
 * święty majster
+* nazywanie gałęzi: nazwa zadania z Waffle'a (może być skrócona)
 * jedna gałąź na funkcjonalność
 * rozwój kodu na devie i pull requesty do deva, przed devem nalezy
 - rozwiązac ewentualne konflikty
