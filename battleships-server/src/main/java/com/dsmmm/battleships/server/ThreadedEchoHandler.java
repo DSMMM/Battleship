@@ -26,7 +26,7 @@ class ThreadedEchoHandler implements Runnable {
                     new OutputStreamWriter(outStream, "UTF-8"), true);
             PrintWriter out2 = new PrintWriter(
                     new OutputStreamWriter(outStream2, "UTF-8"), true);
-            out.println("Witaj! Wpisz BYE by Zakończyć.");
+            out.println("Chat opened.");
             boolean done = false;
 
             while (!done && in.hasNextLine()) {
