@@ -29,7 +29,7 @@ public class ClientInitializer {
     }
 
     void sendMessage(String userInput) {
-        out.println(name + " " + userInput);
+        out.println(name + ": " + userInput);
     }
 
     void listenToServer(TextArea chatId) {
@@ -37,7 +37,7 @@ public class ClientInitializer {
             try {
                 String line;
                 while ((line = in.readLine()) != null) {
-                    chatId.appendText(line);
+                    chatId.appendText(line + "\n");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

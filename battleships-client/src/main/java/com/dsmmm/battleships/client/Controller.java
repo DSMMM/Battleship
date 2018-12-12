@@ -22,8 +22,6 @@ public class Controller {
     @FXML
     private TextField inputChat;
 
-
-
     @FXML
     void inputName() {
         if(nameId.getText().equals("")) {
@@ -33,9 +31,8 @@ public class Controller {
         }
     }
 
-
     @FXML
-    void join(ActionEvent event) {
+    void join() {
         client = new ClientInitializer(nameId.getText());
         client.listenToServer(chatId);
     }

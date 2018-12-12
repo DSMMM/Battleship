@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import javax.security.auth.login.LoginContext;
 import java.io.IOException;
 import java.net.URL;
 
@@ -19,7 +21,8 @@ public class ChatFX extends Application {
         URL resource = getClass().getClassLoader().getResource("sample.fxml");
         Parent root = FXMLLoader.load(resource);
         primaryStage.setTitle("ChatDemo");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        Scene scene = new Scene(root, 600, 400);
+        primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
