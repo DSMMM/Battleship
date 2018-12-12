@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class ClientSocket {
+public class ClientInitializer {
     void clientSocket() {
         Scanner into = new Scanner(System.in);
         System.out.println("Podaj imię: ");
