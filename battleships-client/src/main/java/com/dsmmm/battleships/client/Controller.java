@@ -9,29 +9,43 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class Controller {
-
+    private ClientInitializer client;
     @FXML
-    private TextArea nameId;
+    private TextField nameId;
 
     @FXML
     private Button joinId;
 
     @FXML
-    private TextField chatId;
+    private TextArea chatId;
 
     @FXML
-    private TextArea nameId1;
+    private TextField inputChat;
+
+
+
+    @FXML
+    void inputName() {
+        if(nameId.getText().equals("")) {
+            joinId.setDisable(true);
+        } else {
+            joinId.setDisable(false);
+        }
+    }
+
+
+    @FXML
+    void join(ActionEvent event) {
+        client = new ClientInitializer(nameId.getText());
+        client.listenToServer(chatId);
+    }
 
     @FXML
     void enter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            System.out.println("entered");
+            client.sendMessage(inputChat.getText());
         }
     }
 
-    @FXML
-    void join(ActionEvent event) {
-        System.out.println("join");
-    }
 
 }
