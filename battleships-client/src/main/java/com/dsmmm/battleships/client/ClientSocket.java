@@ -4,12 +4,13 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class ClientSocket {
+class ClientSocket {
     void clientSocket() {
         Scanner into = new Scanner(System.in);
-        System.out.println("Podaj imię: ");
+        Printer.print("Podaj imię: ");
         String imie = into.next();
         try (
+            //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
                 Socket echoSocket = new Socket("vps624409.ovh.net", 8189);
                 PrintWriter out =
                         new PrintWriter(echoSocket.getOutputStream(), true);
@@ -21,12 +22,12 @@ public class ClientSocket {
                                 new InputStreamReader(System.in))
         ) {
             String userInput;
-            System.out.println(in.readLine());
+            Printer.print(in.readLine());
             Thread t = new Thread(()-> {
                 try {
                     String line;
                     while ((line = in.readLine()) != null) {
-                        System.out.println(line);
+                        Printer.print(line);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -37,7 +38,7 @@ public class ClientSocket {
                 out.println(imie + " " + userInput);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Printer.print(e.getMessage());
         }
     }
 }
