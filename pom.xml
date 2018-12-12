@@ -5,16 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dsmmm</groupId>
-    <artifactId>statki</artifactId>
+    <artifactId>battleships</artifactId>
     <version>0.1</version>
-    <name>Statki</name>
-    <description>Statki</description>
+    <name>Battleships</name>
+    <description>Battleships network game with GUI.</description>
     <url>dsmmm.com</url>
     <packaging>pom</packaging>
   
     <modules>
-        <module>statki-backend</module>
-        <module>statki-frontend</module>
+        <module>battleships-server</module>
+        <module>battleships-client</module>
     </modules>
 
     <properties>

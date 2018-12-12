@@ -9,12 +9,12 @@
         <artifactId>statki</artifactId>
         <version>0.1</version>
     </parent>
-
+    
     <groupId>com.dsmmm</groupId>
-    <artifactId>statki-backend</artifactId>
+    <artifactId>battleships-client</artifactId>
     <version>0.1</version>
-    <name>StatkiBackend</name>
-    <description>Statki</description>
+    <name>Battleships GUI</name>
+    <description>GUI for the 'Battleships' network game.</description>
     <url>dsmmm.com</url>
   
     <properties>
@@ -77,7 +77,6 @@
                         <manifestEntries>
                             <mode>development</mode>
                             <url>${project.url}</url>
-                            <key>value</key>
                         </manifestEntries>
                     </archive>
                 </configuration>
