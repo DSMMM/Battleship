@@ -25,6 +25,7 @@ class ClientInitializer {
                 new BufferedReader(
                     new InputStreamReader(echoSocket.getInputStream()));
 
+
         } catch (IOException e) {
             Printer.print(e.getMessage());
         }

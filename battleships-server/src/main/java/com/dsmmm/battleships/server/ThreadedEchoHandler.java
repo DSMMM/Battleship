@@ -41,6 +41,8 @@ class ThreadedEchoHandler implements Runnable {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            System.out.println("Odszedł bezpowrotnie użytkownik");
         }
     }
 }
