@@ -3,12 +3,12 @@ package com.dsmmm.battleships.server.board;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-class Coordinates {
+public class Coordinates {
 
     private final Column column;
     private final Row row;
 
-    Coordinates(Column column, Row row) {
+    public Coordinates(Column column, Row row) {
         this.column = column;
         this.row = row;
     }
@@ -28,7 +28,7 @@ class Coordinates {
     }
 
 
-    Coordinates getNeighbour(Side side, Dimension dimension) throws OutOfBoardException {
+    Coordinates getNeighbour(Side side, Dimension dimension) {
         Column newColumn = column.increment(side.getX());
         Row newRow = row.increment(side.getY());
 
@@ -37,7 +37,7 @@ class Coordinates {
         return new Coordinates(newColumn, newRow);
     }
 
-    private void checkIfInRange(Coordinate coordinate, Predicate<Coordinate> predicate) throws OutOfBoardException {
+    private void checkIfInRange(Coordinate coordinate, Predicate<Coordinate> predicate) {
         if (!predicate.test(coordinate)) throw new OutOfBoardException("Coordinate out of dimension");
     }
 

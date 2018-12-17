@@ -46,7 +46,7 @@ public class CoordinatesTest {
     }
 
     @Test(dataProvider = "neighbours")
-    public void getNeighbourCoordinates(Column column, Row row, Side side, Column expectedColumn, Row expectedRow) throws OutOfBoardException {
+    public void getNeighbourCoordinates(Column column, Row row, Side side, Column expectedColumn, Row expectedRow) {
         // given
         Dimension dimension = new Dimension(10);
 
@@ -70,7 +70,7 @@ public class CoordinatesTest {
     }
 
     @Test(expectedExceptions = OutOfBoardException.class)
-    public void throwsExceptionWhenAskedToReturnNeighourOutOfRangeForRow() throws OutOfBoardException {
+    public void throwsExceptionWhenAskedToReturnNeighourOutOfRangeForRow() {
         //given
         Coordinates coordinates = new Coordinates(new Column(5), new Row(10));
         //when
@@ -79,7 +79,7 @@ public class CoordinatesTest {
     }
 
     @Test(expectedExceptions = OutOfBoardException.class)
-    public void throwsExceptionWhenAskedToReturnNeighourOutOfRangeForColumn() throws OutOfBoardException {
+    public void throwsExceptionWhenAskedToReturnNeighourOutOfRangeForColumn() {
         //given
         Coordinates coordinates = new Coordinates(new Column(10), new Row(3));
         //when
