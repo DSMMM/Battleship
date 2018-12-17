@@ -1,6 +1,5 @@
 package com.dsmmm.battleships.client;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -24,7 +23,7 @@ public class Controller {
 
     @FXML
     void inputName() {
-        if(nameId.getText().equals("")) {
+        if (nameId.getText().equals("")) {
             joinId.setDisable(true);
         } else {
             joinId.setDisable(false);
