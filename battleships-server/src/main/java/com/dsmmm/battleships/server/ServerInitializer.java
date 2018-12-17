@@ -1,31 +1,38 @@
 package com.dsmmm.battleships.server;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
-public class ServerInitializer {
+class ServerInitializer {
+    @SuppressWarnings("InfiniteLoopStatement")
     void initializeServer() {
-        try ( ServerSocket s = new ServerSocket(8189)) {
+        try (ServerSocket serverSocket = new ServerSocket(8189)) {
             while (true) {
-                Socket incoming = s.accept();
-                System.out.println("Dołączyła pierwsza osoba");
-                OutputStream outStream = incoming.getOutputStream();
+                Socket firstUser = serverSocket.accept();
+                Printer.print("First user has joined.");
+                OutputStream outStream = firstUser.getOutputStream();
                 PrintWriter out = new PrintWriter(
-                        new OutputStreamWriter(outStream, "UTF-8"), true);
+                    new OutputStreamWriter(outStream, StandardCharsets.UTF_8), true);
                 out.println("Connection established. Please wait for second user.");
-                Socket incoming2 = s.accept();                //OutputStream outStream = incoming.getOutputStream();
-                System.out.println("Stworzono chatroom");
-                Runnable r = new ThreadedEchoHandler(incoming, incoming2);
-                Runnable r2 = new ThreadedEchoHandler(incoming2, incoming);
-                Thread t = new Thread(r);
-                t.start();
-                Thread t2 = new Thread(r2);
-                t2.start();
+                Socket secondUser = serverSocket.accept();
+                Printer.print("Two users connected. Chatroom initialized.");
+                initializeChatThread(firstUser, secondUser);
+                initializeChatThread(secondUser, firstUser);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Printer.print(e.getMessage());
         }
 
+    }
+
+    private void initializeChatThread(Socket home, Socket away) {
+        Runnable r = new ThreadedEchoHandler(home, away);
+        Thread t = new Thread(r);
+        t.start();
     }
 }
