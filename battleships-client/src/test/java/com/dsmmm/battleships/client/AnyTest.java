@@ -7,8 +7,8 @@ import static org.testng.Assert.assertTrue;
 public class AnyTest {
 
     @Test
-    public void alwaysFail() {
-        assertTrue(false);
+    public void alwaysPass() {
+        assertTrue(true);
     }
 }
 
