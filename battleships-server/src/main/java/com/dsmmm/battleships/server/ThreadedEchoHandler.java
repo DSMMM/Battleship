@@ -37,7 +37,7 @@ class ThreadedEchoHandler implements Runnable {
                 out.println(line);
                 out2.println(line);
 
-                if (line.trim().equals("BYE")) done = true;
+                if (line.trim().contains("BYE")) done = true;
             }
         } catch (IOException e) {
             e.printStackTrace();

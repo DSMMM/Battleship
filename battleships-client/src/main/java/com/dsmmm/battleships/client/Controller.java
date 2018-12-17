@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class Controller {
+
     private ClientInitializer client;
     @FXML
     private TextField nameId;
@@ -45,4 +46,5 @@ public class Controller {
             inputChat.clear();
         }
     }
+
 }
