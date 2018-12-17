@@ -1,6 +1,7 @@
 package com.dsmmm.battleships.server.board;
 
 import java.util.Objects;
+import java.util.function.Predicate;
 
 class Coordinates {
 
@@ -26,14 +27,18 @@ class Coordinates {
         return Objects.hash(column, row);
     }
 
-    Coordinates getNeighbour(Side side, Dimension dimension) {
-        Column newColumn = column.add(side.getX());
-        Row newRow = row.add(side.getY());
 
-        if(newColumn.inRange(dimension) && newRow.inRange(dimension)) {
-            return new Coordinates(newColumn, newRow);
-        }
+    Coordinates getNeighbour(Side side, Dimension dimension) throws OutOfBoardException {
+        Column newColumn = column.increment(side.getX());
+        Row newRow = row.increment(side.getY());
 
-        return null; //TODO throw exception
+        checkIfInRange(newColumn, coordinate -> coordinate.inRange(new Dimension(10)));
+        checkIfInRange(newRow, coordinate -> coordinate.inRange(new Dimension(10)));
+        return new Coordinates(newColumn, newRow);
     }
+
+    private void checkIfInRange(Coordinate coordinate, Predicate<Coordinate> predicate) throws OutOfBoardException {
+        if (!predicate.test(coordinate)) throw new OutOfBoardException("Coordinate out of dimension");
+    }
+
 }

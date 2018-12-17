@@ -2,7 +2,7 @@ package com.dsmmm.battleships.server.board;
 
 import java.util.Objects;
 
-class Row {
+class Row implements Coordinate{
     private final int value;
 
     Row(int value) {
@@ -22,11 +22,11 @@ class Row {
         return Objects.hash(value);
     }
 
-    Row add(int y) {
+    public Row increment(int y) {
         return new Row(value + y);
     }
 
-    boolean inRange(Dimension dimension) {
+    public boolean inRange(Dimension dimension) {
         return value > 0 && dimension.greaterThanOrEqual(value);
     }
 }

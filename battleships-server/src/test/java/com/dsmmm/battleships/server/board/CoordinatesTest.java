@@ -34,19 +34,19 @@ public class CoordinatesTest {
     Object[][] neighbours() {
         return new Object[][]{
                 {new Column(1), new Row(1), Side.RIGHT, new Column(2), new Row(1)},
-                {new Column(3), new Row(2), Side.BOTTOM, new Column(3), new Row(3)},
+                {new Column(3), new Row(2), Side.DOWN, new Column(3), new Row(3)},
                 {new Column(2), new Row(2), Side.UP, new Column(2), new Row(1)},
                 {new Column(2), new Row(4), Side.LEFT, new Column(1), new Row(4)},
                 {new Column(6), new Row(2), Side.UP_RIGHT, new Column(7), new Row(1)},
-                {new Column(2), new Row(2), Side.BOTTOM_RIGHT, new Column(3), new Row(3)},
+                {new Column(2), new Row(2), Side.DOWN_RIGHT, new Column(3), new Row(3)},
                 {new Column(3), new Row(2), Side.UP_LEFT, new Column(2), new Row(1)},
-                {new Column(2), new Row(3), Side.BOTTOM_LEFT, new Column(1), new Row(4)},
+                {new Column(2), new Row(3), Side.DOWN_LEFT, new Column(1), new Row(4)},
                 {new Column(3), new Row(5), Side.RIGHT, new Column(4), new Row(5)},
         };
     }
 
     @Test(dataProvider = "neighbours")
-    public void getNeighbourCoordinates(Column column, Row row, Side side, Column expectedColumn, Row expectedRow) {
+    public void getNeighbourCoordinates(Column column, Row row, Side side, Column expectedColumn, Row expectedRow) throws OutOfBoardException {
         // given
         Dimension dimension = new Dimension(10);
 
@@ -67,5 +67,23 @@ public class CoordinatesTest {
 
         assertEquals(coordinates, coordinates2);
         assertEquals(coordinates.hashCode(), coordinates2.hashCode());
+    }
+
+    @Test(expectedExceptions = OutOfBoardException.class)
+    public void throwsExceptionWhenAskedToReturnNeighourOutOfRangeForRow() throws OutOfBoardException {
+        //given
+        Coordinates coordinates = new Coordinates(new Column(5), new Row(10));
+        //when
+        Coordinates neighbour = coordinates.getNeighbour(Side.DOWN, new Dimension(10));
+
+    }
+
+    @Test(expectedExceptions = OutOfBoardException.class)
+    public void throwsExceptionWhenAskedToReturnNeighourOutOfRangeForColumn() throws OutOfBoardException {
+        //given
+        Coordinates coordinates = new Coordinates(new Column(10), new Row(3));
+        //when
+        Coordinates neighbour = coordinates.getNeighbour(Side.RIGHT, new Dimension(10));
+
     }
 }
