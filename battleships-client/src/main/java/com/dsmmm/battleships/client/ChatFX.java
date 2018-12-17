@@ -21,7 +21,7 @@ public class ChatFX extends Application {
         URL resource = getClass().getClassLoader().getResource("sample.fxml");
         Parent root = FXMLLoader.load(resource);
         primaryStage.setTitle("ChatDemo");
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 753, 537);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
