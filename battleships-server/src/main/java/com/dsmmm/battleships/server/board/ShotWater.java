@@ -1,14 +1,14 @@
 package com.dsmmm.battleships.server.board;
 
-class MastShot implements Mast, Field {
+class ShotWater implements Water, Field {
 
     @Override
     public boolean equals(Object obj) {
-        return getClass()==obj.getClass();
+        return obj != null && getClass() == obj.getClass();
     }
 
     @Override
-    public MastShot transform() {
+    public ShotWater transform() {
         return this;
     }
 }
