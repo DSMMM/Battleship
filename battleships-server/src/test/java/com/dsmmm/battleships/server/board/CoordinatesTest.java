@@ -57,4 +57,15 @@ public class CoordinatesTest {
         // then
         assertEquals(neighbour, coordinatesExpected);
     }
+
+    @Test
+    public void whenCoordinatesEqualHashCodesEqual() {
+        Column column = new Column(3);
+        Row row = new Row(3);
+        Coordinates coordinates = new Coordinates(column, row);
+        Coordinates coordinates2 = new Coordinates(column, row);
+
+        assertEquals(coordinates, coordinates2);
+        assertEquals(coordinates.hashCode(), coordinates2.hashCode());
+    }
 }

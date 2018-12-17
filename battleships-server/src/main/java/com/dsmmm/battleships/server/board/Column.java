@@ -34,3 +34,4 @@ class Column {
         return value > 0 && dimension.greaterThanOrEqual(value);
     }
 }
+

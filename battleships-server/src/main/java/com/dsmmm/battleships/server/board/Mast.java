@@ -1,4 +1,4 @@
 package com.dsmmm.battleships.server.board;
 
-public interface Mast {
+public interface Mast extends Field{
 }

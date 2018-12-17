@@ -1,6 +1,6 @@
 package com.dsmmm.battleships.server.board;
 
-class ShotMast implements Mast, Field {
+class ShotMast implements Mast{
 
     @Override
     public boolean equals(Object obj) {
@@ -8,7 +8,7 @@ class ShotMast implements Mast, Field {
     }
 
     @Override
-    public ShotMast transform() {
+    public Field transform() {
         return this;
     }
 }
