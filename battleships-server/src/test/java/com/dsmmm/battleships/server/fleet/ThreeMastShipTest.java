@@ -1,4 +1,4 @@
-package com.dsmmm.battleships.server.ship;
+package com.dsmmm.battleships.server.fleet;
 
 import com.dsmmm.battleships.server.board.Coordinates;
 import org.testng.Assert;
@@ -35,7 +35,7 @@ public class ThreeMastShipTest {
         Coordinates c1 = new Coordinates(1,1);
 
         // when
-        boolean isShipShoot = threeMast.checkIfShotOnShip(c1);
+        boolean isShipShoot = threeMast.takeShotOnShip(c1);
         // then
 
         assertTrue(isShipShoot);
@@ -48,7 +48,7 @@ public class ThreeMastShipTest {
 
         // when
         Coordinates outside = new Coordinates(9,9);
-        boolean isShipShoot = threeMast.checkIfShotOnShip(outside);
+        boolean isShipShoot = threeMast.takeShotOnShip(outside);
         // then
 
         assertFalse(isShipShoot);

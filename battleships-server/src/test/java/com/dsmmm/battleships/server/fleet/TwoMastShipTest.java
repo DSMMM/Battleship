@@ -1,4 +1,4 @@
-package com.dsmmm.battleships.server.ship;
+package com.dsmmm.battleships.server.fleet;
 
 import com.dsmmm.battleships.server.board.Coordinates;
 import org.testng.Assert;
@@ -36,7 +36,7 @@ public class TwoMastShipTest {
         Ship twoMastShip = getDefaultShip();
 
         // when
-        boolean isShipShoot = twoMastShip.checkIfShotOnShip(c1);
+        boolean isShipShoot = twoMastShip.takeShotOnShip(c1);
         // then
 
         assertTrue(isShipShoot);
@@ -48,7 +48,7 @@ public class TwoMastShipTest {
         Ship twoMastShip = getDefaultShip();
 
         // when
-        boolean isShipShoot = twoMastShip.checkIfShotOnShip(c1);
+        boolean isShipShoot = twoMastShip.takeShotOnShip(c1);
         // then
 
         assertFalse(isShipShoot);

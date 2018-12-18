@@ -1,4 +1,4 @@
-package com.dsmmm.battleships.server.ship;
+package com.dsmmm.battleships.server.fleet;
 
 import org.testng.annotations.Test;
 

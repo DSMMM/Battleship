@@ -1,8 +1,7 @@
-package com.dsmmm.battleships.server.ship;
+package com.dsmmm.battleships.server.fleet;
 
 import com.dsmmm.battleships.server.board.Coordinates;
 import com.dsmmm.battleships.server.board.Mast;
-import com.dsmmm.battleships.server.board.NotShotMast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,12 +18,12 @@ class TwoMastShip implements Ship {
 
     @Override
     public int countStandingMasts() {
-        return (int) mapOfMasts.entrySet().stream().filter(s -> s.getValue() instanceof NotShotMast).count();
+        return countStandingMasts(mapOfMasts);
     }
 
     @Override
-    public boolean checkIfShotOnShip(Coordinates c1) {
-        return mapOfMasts.containsKey(c1) && mapOfMasts.get(c1).equals(new NotShotMast());
+    public boolean takeShotOnShip(Coordinates coordinates) {
+        return takeShotOnShip(coordinates, mapOfMasts);
     }
 }
 

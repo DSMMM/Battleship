@@ -8,7 +8,7 @@ class ShotMast implements Mast{
     }
 
     @Override
-    public Field transform() {
+    public Mast transform() {
         return this;
     }
 }

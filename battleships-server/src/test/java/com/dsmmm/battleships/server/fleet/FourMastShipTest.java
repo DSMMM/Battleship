@@ -1,6 +1,5 @@
-package com.dsmmm.battleships.server.ship;
+package com.dsmmm.battleships.server.fleet;
 
-import com.dsmmm.battleships.server.board.Coordinate;
 import com.dsmmm.battleships.server.board.Coordinates;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -36,7 +35,7 @@ public class FourMastShipTest {
         Coordinates c1 = new Coordinates(1, 1);
         Ship fourMast = getDefaultShip();
         // when
-        boolean isShipShoot = fourMast.checkIfShotOnShip(c1);
+        boolean isShipShoot = fourMast.takeShotOnShip(c1);
         // then
         assertTrue(isShipShoot);
     }
@@ -46,7 +45,7 @@ public class FourMastShipTest {
         Coordinates outside = new Coordinates(9,9);
         Ship fourMast = getDefaultShip();
         // when
-        boolean isShipShoot = fourMast.checkIfShotOnShip(outside);
+        boolean isShipShoot = fourMast.takeShotOnShip(outside);
         // then
         assertFalse(isShipShoot);
     }

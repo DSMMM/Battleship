@@ -8,7 +8,7 @@ class ShotWater implements Water{
     }
 
     @Override
-    public Field transform() {
+    public Water transform() {
         return this;
     }
 }
