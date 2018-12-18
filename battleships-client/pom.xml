@@ -11,11 +11,6 @@
     </parent>
 
     <artifactId>battleships-client</artifactId>
-    <version>0.1</version>
-    <name>Battleships GUI</name>
-    <description>GUI for the 'Battleships' network game.</description>
-    <url>dsmmm.com</url>
-
     <properties>
 
         <maven-jar-plugin.mainClass>com.dsmmm.battleships.client.App</maven-jar-plugin.mainClass>
