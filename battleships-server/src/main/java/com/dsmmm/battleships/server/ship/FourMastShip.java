@@ -7,4 +7,9 @@ import java.util.Set;
 public class FourMastShip implements Ship {
     public FourMastShip(Coordinates c1, Coordinates c2, Coordinates c3, Coordinates c4) {
     }
+
+    @Override
+    public int countStandingMasts() {
+        return 4;
+    }
 }
