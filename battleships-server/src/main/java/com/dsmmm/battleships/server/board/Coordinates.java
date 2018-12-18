@@ -13,13 +13,17 @@ public class Coordinates {
         this.row = row;
     }
 
+    public Coordinates(int column, int row) {
+        this(new Column(column), new Row(row));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coordinates that = (Coordinates) o;
         return Objects.equals(column, that.column) &&
-                Objects.equals(row, that.row);
+            Objects.equals(row, that.row);
     }
 
     @Override
@@ -32,8 +36,8 @@ public class Coordinates {
         Column newColumn = column.increment(side.getX());
         Row newRow = row.increment(side.getY());
 
-        checkIfInRange(newColumn, coordinate -> coordinate.inRange(dimension));
-        checkIfInRange(newRow, coordinate -> coordinate.inRange(dimension));
+        checkIfInRange(newColumn, coordinate -> coordinate.inRange(new Dimension(10)));
+        checkIfInRange(newRow, coordinate -> coordinate.inRange(new Dimension(10)));
         return new Coordinates(newColumn, newRow);
     }
 
