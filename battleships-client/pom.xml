@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -9,20 +9,30 @@
         <artifactId>battleships</artifactId>
         <version>0.1</version>
     </parent>
-    
-    <groupId>com.dsmmm</groupId>
+
     <artifactId>battleships-client</artifactId>
-    <version>0.1</version>
-    <name>Battleships GUI</name>
-    <description>GUI for the 'Battleships' network game.</description>
-    <url>dsmmm.com</url>
-  
     <properties>
 
+        <maven-jar-plugin.mainClass>com.dsmmm.battleships.client.App</maven-jar-plugin.mainClass>
+        <javafx-controls.version>11</javafx-controls.version>
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx-controls.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx-controls.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx-controls.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -36,7 +46,7 @@
                         <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.dsmmm.battleships.client.ChatFX</mainClass>
+                            <mainClass>${maven-jar-plugin.mainClass}</mainClass>
                         </manifest>
                         <manifestEntries>
                             <mode>development</mode>
@@ -44,6 +54,28 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${maven-jar-plugin.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

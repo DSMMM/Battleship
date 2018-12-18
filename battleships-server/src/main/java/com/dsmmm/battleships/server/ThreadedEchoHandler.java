@@ -2,11 +2,14 @@ package com.dsmmm.battleships.server;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 class ThreadedEchoHandler implements Runnable {
-    private Socket incoming;
-    private Socket incoming2;
+    private final Socket incoming;
+    private final Socket incoming2;
+
 
 
     public ThreadedEchoHandler(Socket incomingSocket, Socket incomingSocket2) {
@@ -16,16 +19,16 @@ class ThreadedEchoHandler implements Runnable {
 
     public void run() {
         try (
-                InputStream inStream = incoming.getInputStream();
-                OutputStream outStream = incoming.getOutputStream();
-                OutputStream outStream2 = incoming2.getOutputStream();
+            InputStream inStream = incoming.getInputStream();
+            OutputStream outStream = incoming.getOutputStream();
+            OutputStream outStream2 = incoming2.getOutputStream()
         ) {
-
-            Scanner in = new Scanner(inStream, "UTF-8");
+            Charset chatCharset = StandardCharsets.UTF_8;
+            Scanner in = new Scanner(inStream, String.valueOf(chatCharset));
             PrintWriter out = new PrintWriter(
-                    new OutputStreamWriter(outStream, "UTF-8"), true);
+                new OutputStreamWriter(outStream, chatCharset), true);
             PrintWriter out2 = new PrintWriter(
-                    new OutputStreamWriter(outStream2, "UTF-8"), true);
+                new OutputStreamWriter(outStream2, chatCharset), true);
             out.println("Chat opened.");
             boolean done = false;
 
@@ -34,9 +37,10 @@ class ThreadedEchoHandler implements Runnable {
                 line = in.nextLine();
                 out.println(line);
                 out2.println(line);
-
-                if (line.trim().equals("BYE")) done = true;
             }
+            out.println("Your friend left chat! Status: disconnected");
+            out2.println("Your friend left chat! Status: disconnected");
+            System.out.println("Chat disconnected");
         } catch (IOException e) {
             e.printStackTrace();
         }
