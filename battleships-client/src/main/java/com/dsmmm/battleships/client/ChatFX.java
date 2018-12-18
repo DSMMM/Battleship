@@ -27,6 +27,7 @@ public class ChatFX extends Application {
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(event->System.exit(0));
         primaryStage.show();
     }
 }
