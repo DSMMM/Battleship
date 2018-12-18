@@ -1,6 +1,8 @@
 package com.dsmmm.battleships.client;
 
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -74,12 +76,21 @@ public class Controller implements Initializable {
                 button.setPrefWidth(SIZE);
                 final int high = i + 1;
                 final int width = j + 1;
-                button.setOnAction(event-> System.out.println(high + ", " +  width));
+                button.setOnAction(onFieldClickEvent(high, width,button));
                 button.setId(String.valueOf(i));
+
                 pane.getChildren().add(button);
             }
         }
     }
+    //TODO zablokować btn przed joinem
+    private EventHandler<ActionEvent> onFieldClickEvent(int high, int width, Button button) {
+        return (ActionEvent event) -> {
+            client.sendCoordinates(width, high);
+            button.setStyle("-fx-background-color: black;");
+        };
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

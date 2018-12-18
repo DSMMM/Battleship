@@ -41,8 +41,13 @@ class ClientInitializer {
             try {
                 String line;
                 while ((line = in.readLine()) != null) {
+                    if(Prefix.getType(line)==Prefix.CHAT){
+                        chatId.appendText(Prefix.decipher(line) + "\n");
+                    }else {
+                        //TODO połączyć z drugą planszą i zaznaczać trafienia
+                        System.out.println(Prefix.decipher(line));
+                    }
 
-                    chatId.appendText(line + "\n");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
