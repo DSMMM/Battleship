@@ -24,9 +24,10 @@ public class ChatFX extends Application {
         }
         Parent root = FXMLLoader.load(resource);
         primaryStage.setTitle("ChatDemo");
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 747, 613);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(event->System.exit(0));
         primaryStage.show();
     }
 }
