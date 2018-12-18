@@ -1,6 +1,6 @@
 package com.dsmmm.battleships.server.board;
 
-class NotShotMast implements Mast {
+public class NotShotMast implements Mast {
     @Override
     public boolean equals(Object obj) {
         return obj != null && getClass()==obj.getClass();

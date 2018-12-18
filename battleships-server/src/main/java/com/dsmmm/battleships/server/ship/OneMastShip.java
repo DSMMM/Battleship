@@ -7,12 +7,13 @@ import com.dsmmm.battleships.server.board.NotShotMast;
 import java.util.HashMap;
 import java.util.Map;
 
-class ThreeMastShip implements Ship {
+class OneMastShip implements Ship {
+
     private Map<Coordinates, Mast> mapOfMasts;
 
-    ThreeMastShip(Coordinates c1, Coordinates c2, Coordinates c3) {
+    OneMastShip(Coordinates c1) {
         mapOfMasts = new HashMap<>();
-        mapOfMasts = putMastsToShip(mapOfMasts, c1, c2, c3);
+        mapOfMasts = putMastsToShip(mapOfMasts, c1);
 
     }
 

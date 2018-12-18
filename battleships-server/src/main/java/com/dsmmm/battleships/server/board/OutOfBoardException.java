@@ -1,7 +1,7 @@
 package com.dsmmm.battleships.server.board;
 
-public class OutOfBoardException extends RuntimeException{
-    public OutOfBoardException(String message) {
+class OutOfBoardException extends RuntimeException{
+    OutOfBoardException(String message) {
         super(message);
     }
 }

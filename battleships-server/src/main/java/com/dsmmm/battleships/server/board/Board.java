@@ -5,7 +5,7 @@ import java.util.Map;
 
 class Board {
     private Map<Coordinates, Field> mapOfFields;
-    private Dimension dimension;
+    private final Dimension dimension;
 
     Board(Dimension dimension)  {
         this.dimension = dimension;

@@ -45,6 +45,6 @@ public class ShotMastTest {
         // when
         shotMast = new ShotMast();
         // then
-        Assert.assertFalse(shotMast.equals(null));
+        Assert.assertNotEquals(null, shotMast);
     }
 }

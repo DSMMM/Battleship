@@ -45,6 +45,6 @@ public class ShotWaterTest {
         // when
         shotWater = new ShotWater();
         // then
-        Assert.assertFalse(shotWater.equals(null));
+        Assert.assertNotEquals(null, shotWater);
     }
 }
