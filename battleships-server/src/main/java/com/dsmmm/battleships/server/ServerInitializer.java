@@ -18,7 +18,7 @@ class ServerInitializer {
                 OutputStream outStream = firstUser.getOutputStream();
                 PrintWriter out = new PrintWriter(
                     new OutputStreamWriter(outStream, StandardCharsets.UTF_8), true);
-                out.println("Connection established. Please wait for second user.");
+                out.println(Prefix.CHAT.cipher( "Connection established. Please wait for second user."));
                 Socket secondUser = serverSocket.accept();
                 Printer.print("Two users connected. Chatroom initialized.");
                 initializeChatThread(firstUser, secondUser);

@@ -1,8 +1,8 @@
-package com.dsmmm.battleships.client;
+package com.dsmmm.battleships.server;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class PrefixTest {
 
