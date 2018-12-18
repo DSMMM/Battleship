@@ -53,6 +53,7 @@ public class Controller implements Initializable {
         client.listenToServer(chatId);
         joinId.setDisable(true);
         nameId.setDisable(true);
+        enableBoard(paneEnemy);
     }
 
     @FXML
@@ -71,19 +72,28 @@ public class Controller implements Initializable {
                 button.setLayoutX(i * SIZE);
                 button.setLayoutY(j * SIZE);
 
-
                 button.setPrefHeight(SIZE);
                 button.setPrefWidth(SIZE);
                 final int high = i + 1;
                 final int width = j + 1;
-                button.setOnAction(onFieldClickEvent(high, width,button));
-                button.setId(String.valueOf(i));
-
+                button.setOnAction(onFieldClickEvent(high, width, button));
+                button.setId(i + "-" + j);
+                button.setDisable(true);
                 pane.getChildren().add(button);
             }
         }
     }
-    //TODO zablokować btn przed joinem
+
+    @FXML
+    private void enableBoard(Pane pane) {
+        for(int i = 0; i<10; i++) {
+            for (int j = 0; j < 10; j++) {
+                Button button = (Button) pane.lookup("#" + i + "-" + j);
+                button.setDisable(false);
+            }
+        }
+    }
+
     private EventHandler<ActionEvent> onFieldClickEvent(int high, int width, Button button) {
         return (ActionEvent event) -> {
             client.sendCoordinates(width, high);
