@@ -29,7 +29,11 @@ class ClientInitializer {
     }
 
     void sendMessage(String userInput) {
-        out.println(name + ": " + userInput);
+        out.println(Prefix.CHAT.cipher(name+": "+userInput));
+    }
+
+    void sendCoordinates(int x,int y){
+        out.println(Prefix.SHOOT.cipher(x+" "+y));
     }
 
     void listenToServer(TextArea chatId) {
@@ -37,6 +41,7 @@ class ClientInitializer {
             try {
                 String line;
                 while ((line = in.readLine()) != null) {
+
                     chatId.appendText(line + "\n");
                 }
             } catch (IOException e) {
