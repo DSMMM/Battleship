@@ -1,5 +1,6 @@
 package com.dsmmm.battleships.client;
 
+
 import javafx.scene.control.TextArea;
 
 import java.io.BufferedReader;
