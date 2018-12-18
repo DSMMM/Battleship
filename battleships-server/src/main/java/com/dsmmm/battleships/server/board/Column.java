@@ -22,10 +22,12 @@ class Column implements Coordinate {
         return Objects.hash(value);
     }
 
+    @Override
     public Column increment(int x) {
         return new Column(value + x);
     }
 
+    @Override
     public boolean inRange(Dimension dimension) {
         return value > 0 && dimension.greaterThanOrEqual(value);
     }
