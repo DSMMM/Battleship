@@ -31,5 +31,10 @@ class Column implements Coordinate {
     public boolean inRange(Dimension dimension) {
         return value > 0 && dimension.greaterThanOrEqual(value);
     }
+
+    @Override
+    public String toString() {
+        return "" + value;
+    }
 }
 

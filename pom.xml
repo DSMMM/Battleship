@@ -37,6 +37,7 @@
         <version.plugin.maven.surefire.plugin>3.0.0-M1</version.plugin.maven.surefire.plugin>
         <testng.version>6.14.3</testng.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.minimum>0.7</jacoco-maven-plugin.minimum>
     </properties>
 
     <dependencies>
@@ -124,7 +125,7 @@
                                             <limit>
                                                 <counter>LINE</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>0.5</minimum>
+                                                <minimum>${jacoco-maven-plugin.minimum}</minimum>
                                             </limit>
                                         </limits>
                                     </rule>

@@ -13,7 +13,7 @@ class ShotWater implements Water{
     }
 
     @Override
-    public Field destroy() {
+    public Water destroy() {
         return this;
     }
 }

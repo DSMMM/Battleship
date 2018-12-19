@@ -32,7 +32,7 @@ public class Coordinates {
     }
 
 
-    Coordinates getNeighbour(Side side, Dimension dimension) {
+    public Coordinates getNeighbour(Side side, Dimension dimension) {
         Column newColumn = column.increment(side.getX());
         Row newRow = row.increment(side.getY());
 
@@ -41,8 +41,26 @@ public class Coordinates {
         return new Coordinates(newColumn, newRow);
     }
 
+    public boolean checkIfNeighbourInRange(Side side, Dimension dimension) {
+        Column newColumn = column.increment(side.getX());
+        Row newRow = row.increment(side.getY());
+        if(checkIfNotPossible(newColumn, coordinate -> coordinate.inRange(dimension))) return false;
+        return !checkIfNotPossible(newRow, coordinate -> coordinate.inRange(dimension));
+    }
+
     private void checkIfInRange(Coordinate coordinate, Predicate<Coordinate> predicate) {
         if (!predicate.test(coordinate)) throw new OutOfBoardException("Coordinate out of board");
     }
 
+    private boolean checkIfNotPossible(Coordinate coordinate, Predicate<Coordinate> predicate) {
+        return !predicate.test(coordinate);
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "column=" + column +
+                ", row=" + row +
+                '}';
+    }
 }

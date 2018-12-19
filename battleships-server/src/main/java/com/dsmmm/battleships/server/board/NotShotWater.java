@@ -12,7 +12,7 @@ class NotShotWater implements Water {
     }
 
     @Override
-    public Field destroy() {
+    public Water destroy() {
         return new ShotWater();
     }
 }

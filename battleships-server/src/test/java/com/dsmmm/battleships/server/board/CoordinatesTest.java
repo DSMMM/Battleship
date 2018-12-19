@@ -4,8 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.*;
 
 public class CoordinatesTest {
     @Test
@@ -16,7 +15,7 @@ public class CoordinatesTest {
         // when
 
         // then
-        Assert.assertTrue(coordinates.equals(coordinatesExpected));
+        Assert.assertEquals(coordinates, coordinatesExpected);
     }
 
     @Test
@@ -27,7 +26,7 @@ public class CoordinatesTest {
         // when
 
         // then
-        assertFalse(coordinates.equals(coordinatesExpected));
+        assertNotEquals(coordinates, coordinatesExpected);
     }
 
     @DataProvider
