@@ -3,7 +3,7 @@ package com.dsmmm.battleships.server.io;
 /**
  * @TODO: DOCUMENT ME
  */
-public enum Prefix {
+enum Prefix {
     CHAT("/chat"),
     SHOOT("/shoot"),
     SHIPS("/ships"),
@@ -21,16 +21,16 @@ public enum Prefix {
         return key;
     }
 
-    public String cipher(String toCipher) {
+    String cipher(String toCipher) {
         return key + " " + toCipher;
     }
 
-    public static String decipher(String toDecipher) {
+    static String decipher(String toDecipher) {
         Prefix prefix = getType(toDecipher);
         return toDecipher.substring(prefix.toString().length() + 1);
     }
 
-    public static Prefix getType(String message) {
+    static Prefix getType(String message) {
         for (Prefix prefix : Prefix.values()) {
             if (message.startsWith(prefix.toString())) {
                 return prefix;

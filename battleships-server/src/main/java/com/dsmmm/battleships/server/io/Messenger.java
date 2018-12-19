@@ -15,6 +15,10 @@ public class Messenger {
         homeOut.println(Prefix.CHAT.cipher(message));
     }
 
+    public static void sendMessage(PrintWriter out,String message){
+        out.println(Prefix.CHAT.cipher(message));
+    }
+
     public void sendToBothPlayersChat(String message) {
         awayOut.println(Prefix.CHAT.cipher(message));
         awayOut.println(Prefix.CHAT.cipher(message));

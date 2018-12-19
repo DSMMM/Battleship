@@ -1,6 +1,6 @@
 package com.dsmmm.battleships.server;
 
-import com.dsmmm.battleships.server.io.Prefix;
+import com.dsmmm.battleships.server.io.Messenger;
 import com.dsmmm.battleships.server.io.Printer;
 
 import java.io.IOException;
@@ -41,8 +41,8 @@ class ServerInitializer {
 
         OutputStream outStreamHost = host.getOutputStream();
         PrintWriter outHost = new PrintWriter(
-            new OutputStreamWriter(outStreamHost, StandardCharsets.UTF_8), true);
-        outHost.println(Prefix.CHAT.cipher( "Connection established. Please wait for second user."));
+                new OutputStreamWriter(outStreamHost, StandardCharsets.UTF_8), true);
+        Messenger.sendMessage(outHost, "Connection established. Please wait for second user.");
         return host;
     }
 
