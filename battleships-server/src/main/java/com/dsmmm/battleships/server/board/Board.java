@@ -8,14 +8,14 @@ public class Board {
     private Map<Coordinates, Field> mapOfFields;
     private final Dimension dimension;
 
-    public Board(Dimension dimension)  {
+    Board(Dimension dimension)  {
         this.dimension = dimension;
         this.mapOfFields = new HashMap<>();
         initializeBoard();
     }
 
     public Board()  {
-        this.dimension = new Dimension();
+        this(new Dimension());
         this.mapOfFields = new HashMap<>();
         initializeBoard();
     }
