@@ -3,6 +3,7 @@ package com.dsmmm.battleships.client;
 
 import com.dsmmm.battleships.client.io.Prefix;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ class ClientInitializer {
     ClientInitializer(String name) {
         this.name = name;
         try {
-            echoSocket = new Socket("vps624409.ovh.net", 8189);
+            echoSocket = new Socket("localhost", 8189);
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
@@ -33,11 +34,15 @@ class ClientInitializer {
         out.println(Prefix.CHAT.cipher(name + ": " + userInput));
     }
 
+    void requestGenerateFleet() {
+        out.println(Prefix.GENERATE.toString());
+    }
+
     void sendCoordinates(int x, int y) {
         out.println(Prefix.SHOOT.cipher(x + " " + y));
     }
 
-    void listenToServer(TextArea chatId) {
+    void listenToServer(TextArea chatId, Controller controller) {
         Thread t = new Thread(() -> {
             try {
                 String line;
@@ -52,7 +57,7 @@ class ClientInitializer {
                             Printer.print(line);
                             break;
                         case SHIPS:
-                            Printer.print(line);
+                            controller.showFleet(decipheredLine);
                             break;
                         default:
                             Printer.print(line);
