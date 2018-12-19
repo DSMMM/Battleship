@@ -1,7 +1,7 @@
 package com.dsmmm.battleships.server.board;
 
 /**
- * @TODO: DOCUMENT ME
+ * TODO
  * HINT: how about Identifier as a name?
  */
 public interface Coordinate {

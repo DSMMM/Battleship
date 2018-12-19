@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Contains board created from fields.
+ */
 public class Board {
     private final Dimension dimension;
     private Map<Coordinates, Field> mapOfFields;
