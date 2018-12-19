@@ -6,7 +6,7 @@
 
     <groupId>com.dsmmm</groupId>
     <artifactId>battleships</artifactId>
-    <version>0.1</version>
+    <version>0.5</version>
     <name>Battleships</name>
     <description>Battleships network game with GUI.</description>
     <url>dsmmm.com</url>
