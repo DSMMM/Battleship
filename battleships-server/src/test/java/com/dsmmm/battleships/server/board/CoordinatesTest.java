@@ -74,7 +74,7 @@ public class CoordinatesTest {
         //given
         Coordinates coordinates = new Coordinates(new Column(5), new Row(10));
         //when
-        Coordinates neighbour = coordinates.getNeighbour(Side.DOWN, new Dimension(10));
+        coordinates.getNeighbour(Side.DOWN, new Dimension(10));
 
     }
 
@@ -83,7 +83,7 @@ public class CoordinatesTest {
         //given
         Coordinates coordinates = new Coordinates(new Column(10), new Row(3));
         //when
-        Coordinates neighbour = coordinates.getNeighbour(Side.RIGHT, new Dimension(10));
+        coordinates.getNeighbour(Side.RIGHT, new Dimension(10));
 
     }
 }

@@ -1,5 +1,8 @@
 package com.dsmmm.battleships.server;
 
+import com.dsmmm.battleships.server.io.Messenger;
+import com.dsmmm.battleships.server.io.Printer;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.Charset;

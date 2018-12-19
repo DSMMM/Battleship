@@ -1,6 +1,7 @@
 package com.dsmmm.battleships.client;
 
 
+import com.dsmmm.battleships.client.io.Prefix;
 import javafx.scene.control.TextArea;
 
 import java.io.BufferedReader;
@@ -29,11 +30,11 @@ class ClientInitializer {
     }
 
     void sendMessage(String userInput) {
-        out.println(Prefix.CHAT.cipher(name+": "+userInput));
+        out.println(Prefix.CHAT.cipher(name + ": " + userInput));
     }
 
-    void sendCoordinates(int x,int y){
-        out.println(Prefix.SHOOT.cipher(x+" "+y));
+    void sendCoordinates(int x, int y) {
+        out.println(Prefix.SHOOT.cipher(x + " " + y));
     }
 
     void listenToServer(TextArea chatId) {
@@ -41,13 +42,22 @@ class ClientInitializer {
             try {
                 String line;
                 while ((line = in.readLine()) != null) {
-                    if(Prefix.getType(line)==Prefix.CHAT){
-                        chatId.appendText(Prefix.decipher(line) + "\n");
-                    }else {
-                        //TODO połączyć z drugą planszą i zaznaczać trafienia
-                        Printer.print(Prefix.decipher(line));
+                    Prefix type = Prefix.getType(line);
+                    String decipheredLine = Prefix.decipher(line);
+                    switch (type) {
+                        case CHAT:
+                            chatId.appendText(decipheredLine + "\n");
+                            break;
+                        case HIT:
+                            Printer.print(line);
+                            break;
+                        case SHIPS:
+                            Printer.print(line);
+                            break;
+                        default:
+                            Printer.print(line);
+                            break;
                     }
-
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -1,11 +1,14 @@
-package com.dsmmm.battleships.server;
+package com.dsmmm.battleships.server.io;
 
 /**
  * @TODO: DOCUMENT ME
  */
 public enum Prefix {
     CHAT("/chat"),
-    SHOOT("/shoot");
+    SHOOT("/shoot"),
+    SHIPS("/ships"),
+    HIT("/hit"),
+    GENERATE("/generate");
 
     private String key;
 
@@ -19,17 +22,17 @@ public enum Prefix {
     }
 
     public String cipher(String toCipher) {
-        return key +" "+ toCipher;
+        return key + " " + toCipher;
     }
 
     public static String decipher(String toDecipher) {
-       Prefix prefix = getType(toDecipher);
-       return toDecipher.substring(prefix.toString().length()+1);
+        Prefix prefix = getType(toDecipher);
+        return toDecipher.substring(prefix.toString().length() + 1);
     }
 
-    public static Prefix getType(String message){
-        for (Prefix prefix:Prefix.values()){
-            if(message.startsWith(prefix.toString())){
+    public static Prefix getType(String message) {
+        for (Prefix prefix : Prefix.values()) {
+            if (message.startsWith(prefix.toString())) {
                 return prefix;
             }
         }

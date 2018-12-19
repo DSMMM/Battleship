@@ -1,5 +1,8 @@
 package com.dsmmm.battleships.server;
 
+import com.dsmmm.battleships.server.io.Prefix;
+import com.dsmmm.battleships.server.io.Printer;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;

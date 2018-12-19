@@ -1,4 +1,4 @@
-package com.dsmmm.battleships.server;
+package com.dsmmm.battleships.server.io;
 
 import org.testng.annotations.Test;
 
@@ -7,31 +7,29 @@ import static org.testng.Assert.assertEquals;
 public class PrefixTest {
 
     @Test
-    public void createChatMessage()
-    {
+    public void createChatMessage() {
         // given
         String message = Prefix.CHAT.cipher("message");
         String expectedString = "/chat message";
         // when
 
         // then
-        assertEquals(expectedString,message);
+        assertEquals(expectedString, message);
     }
+
     @Test
-    public void createShootMessage()
-    {
+    public void createShootMessage() {
         // given
         String message = Prefix.SHOOT.cipher("message");
         String expectedString = "/shoot message";
         // when
 
         // then
-        assertEquals(expectedString,message);
+        assertEquals(expectedString, message);
     }
 
     @Test
-    public void getMessageType()
-    {
+    public void getMessageType() {
         // given
         String message = "/shoot something";
         Prefix expectedType = Prefix.SHOOT;
@@ -42,8 +40,7 @@ public class PrefixTest {
     }
 
     @Test
-    public void decipherMessage()
-    {
+    public void decipherMessage() {
         // given
         String givenMessage = "/shoot something";
         String expectedMessage = "something";
@@ -53,9 +50,8 @@ public class PrefixTest {
         assertEquals(expectedMessage, message);
     }
 
-    @Test (expectedExceptions = MessageTypeException.class)
-    public void throwsMessageTypeException()
-    {
+    @Test(expectedExceptions = MessageTypeException.class)
+    public void throwsMessageTypeException() {
         // given
         String givenMessage = "/shhhooott something";
         // when
