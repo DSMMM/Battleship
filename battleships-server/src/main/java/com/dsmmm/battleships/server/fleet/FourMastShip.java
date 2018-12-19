@@ -26,7 +26,7 @@ class FourMastShip implements Ship {
         return takeShotOnShip(coordinates, mapOfMasts);
     }
 
-    public boolean checkIfShipContainsCoordinates(Coordinates coordinates) {
+/*    public boolean checkIfShipContainsCoordinates(Coordinates coordinates) {
         return checkIfShipContainsCoordinates(coordinates, mapOfMasts);
-    }
+    }*/
 }

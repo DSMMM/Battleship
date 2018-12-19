@@ -38,7 +38,7 @@ public class Fleet {
         return false;
     }
 
-    public void printFleet() {
+/*    public void printFleet() {
         for(int i = 1; i<=10; i++) {
             for(int j = 1; j<=10; j++) {
                 Coordinates c = new Coordinates(i,j);
@@ -55,7 +55,7 @@ public class Fleet {
             System.out.println();
         }
 
-    }
+    }*/
 
 
 }

@@ -13,6 +13,20 @@ public class Randomizer {
     private Set<Coordinates> possibleCoordinates = new Board().getAllPossibleCoordinates();
     private Dimension dimension = new Dimension();
 
+    public Fleet generateRandomFleet() {
+        setRandom4Mast();
+        setRandom3Mast();
+        setRandom3Mast();
+        setRandom2Mast();
+        setRandom2Mast();
+        setRandom2Mast();
+        setRandom1Mast();
+        setRandom1Mast();
+        setRandom1Mast();
+        setRandom1Mast();
+        return fleet;
+    }
+
     public void setRandom4Mast() {
         Set<Coordinates> set = setRandom(4);
         Iterator<Coordinates> iterator = set.iterator();
@@ -41,12 +55,12 @@ public class Randomizer {
         Set<Coordinates> coordinatesToBuildShip = new HashSet<>();
         Coordinates lastAdded = getRandomPossibleCoordinates(possibleCoordinates);
         coordinatesToBuildShip.add(lastAdded);
-        for(int i = 1; i<masts; i++) {
+        for (int i = 1; i < masts; i++) {
             Coordinates toAdd = getRandomPossibleCoordinates(getAdjacent(lastAdded));
             coordinatesToBuildShip.add(toAdd);
             lastAdded = toAdd;
         }
-        for(Coordinates c : coordinatesToBuildShip) {
+        for (Coordinates c : coordinatesToBuildShip) {
             removeNeighbours(c);
         }
         return coordinatesToBuildShip;
@@ -60,7 +74,7 @@ public class Randomizer {
     }
 
     private void removeNeighbours(Coordinates coordinates) {
-        for(Coordinates c: getNeighbours(coordinates)) {
+        for (Coordinates c : getNeighbours(coordinates)) {
             possibleCoordinates.remove(c);
         }
     }
@@ -88,7 +102,7 @@ public class Randomizer {
     }
 
     private void addCoordinatesToSet(Side side, Coordinates coordinates, Set<Coordinates> result) {
-        if(coordinates.checkIfNeighbourInRange(side, dimension)) {
+        if (coordinates.checkIfNeighbourInRange(side, dimension)) {
             Coordinates c = coordinates.getNeighbour(side, dimension);
             if (possibleCoordinates.contains(c)) {
                 result.add(coordinates.getNeighbour(side, dimension));
@@ -96,7 +110,7 @@ public class Randomizer {
         }
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         Randomizer randomizer = new Randomizer();
         randomizer.setRandom4Mast();
         randomizer.setRandom3Mast();
@@ -109,5 +123,5 @@ public class Randomizer {
         randomizer.setRandom1Mast();
         randomizer.setRandom1Mast();
         randomizer.fleet.printFleet();
-    }
+    }*/
 }
