@@ -33,6 +33,6 @@ public enum Prefix {
                 return prefix;
             }
         }
-        throw new MessageTypeException();
+        throw new MessageTypeException(message);
     }
 }

@@ -16,5 +16,6 @@ public class ThreeMastShipTest {
         Ship threeMast = new ThreeMastShip(c1, c2, c3);
         //then
         Assert.assertNotNull(threeMast);
+        Assert.assertEquals(threeMast.countStandingMasts(),3);
     }
 }
