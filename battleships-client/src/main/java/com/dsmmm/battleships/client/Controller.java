@@ -68,7 +68,7 @@ public class Controller implements Initializable {
                 final int high = i + 1;
                 final int width = j + 1;
                 button.setOnAction(onFieldClickEvent(high, width, button));
-                button.setId(i + "-" + j);
+                button.setId(high + "-" + width);
                 button.setDisable(true);
                 pane.getChildren().add(button);
             }
@@ -77,8 +77,8 @@ public class Controller implements Initializable {
 
     @FXML
     private void enableBoard(Pane pane) {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
                 Button button = (Button) pane.lookup("#" + i + "-" + j);
                 button.setDisable(false);
             }
