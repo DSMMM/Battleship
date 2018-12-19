@@ -22,7 +22,7 @@ public class NotShotWaterTest {
         Field notShotWater = new NotShotWater();
         ShotWater shotWaterExpected = new ShotWater();
         // when
-        Field shotWater = notShotWater.transform();
+        Field shotWater = notShotWater.destroy();
         // then
         Assert.assertEquals(shotWaterExpected, shotWater);
     }

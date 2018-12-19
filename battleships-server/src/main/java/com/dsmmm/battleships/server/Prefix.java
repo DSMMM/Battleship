@@ -1,5 +1,8 @@
 package com.dsmmm.battleships.server;
 
+/**
+ * @TODO: DOCUMENT ME
+ */
 public enum Prefix {
     CHAT("/chat"),
     SHOOT("/shoot");

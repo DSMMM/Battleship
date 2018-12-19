@@ -7,7 +7,7 @@ class NotShotWater implements Water {
     }
 
     @Override
-    public Field transform() {
+    public Field destroy() {
         return new ShotWater();
     }
 }

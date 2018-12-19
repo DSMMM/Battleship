@@ -36,13 +36,13 @@ public class Coordinates {
         Column newColumn = column.increment(side.getX());
         Row newRow = row.increment(side.getY());
 
-        checkIfInRange(newColumn, coordinate -> coordinate.inRange(new Dimension(10)));
-        checkIfInRange(newRow, coordinate -> coordinate.inRange(new Dimension(10)));
+        checkIfInRange(newColumn, coordinate -> coordinate.inRange(dimension));
+        checkIfInRange(newRow, coordinate -> coordinate.inRange(dimension));
         return new Coordinates(newColumn, newRow);
     }
 
     private void checkIfInRange(Coordinate coordinate, Predicate<Coordinate> predicate) {
-        if (!predicate.test(coordinate)) throw new OutOfBoardException("Coordinate out of dimension");
+        if (!predicate.test(coordinate)) throw new OutOfBoardException("Coordinate out of board");
     }
 
 }

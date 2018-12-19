@@ -9,6 +9,7 @@ import java.util.Scanner;
 class ThreadedEchoHandler implements Runnable {
     private final Socket incoming;
     private final Socket incoming2;
+    private Messenger messenger;
 
 
     public ThreadedEchoHandler(Socket incomingSocket, Socket incomingSocket2) {
@@ -28,34 +29,23 @@ class ThreadedEchoHandler implements Runnable {
                     new OutputStreamWriter(outStream, chatCharset), true);
             PrintWriter out2 = new PrintWriter(
                     new OutputStreamWriter(outStream2, chatCharset), true);
-            //todo stworzyć klasę do wysyłania wiadomości na czat
-            out.println(Prefix.CHAT.cipher("Chat opened."));
+            //todo stworzyć klasę do wysyłania wiadomości na czat //+1
+            messenger = new Messenger(out, out2);
+            messenger.sendToFirstPlayerChat("Chat opened.");
             boolean done = false;
 
             while (!done && in.hasNextLine()) {
                 String line;
                 line = in.nextLine();
-                redirectMessage(out, out2, line);
+                messenger.redirectMessage(out, out2, line);
             }
-            out.println("Your friend left chat! Status: disconnected");
-            out2.println("Your friend left chat! Status: disconnected");
+            messenger.sendToBothPlayersChat("Your friend [has] left [the] chat! Status: disconnected");
             System.out.println("Chat disconnected");
         } catch (IOException e) {
+            //HINT: true error handling might be more useful ;-)
             e.printStackTrace();
         }
     }
 
-    private void redirectMessage(PrintWriter out, PrintWriter out2, String line) {
-        Prefix type = Prefix.getType(line);
-        String decipheredLine = Prefix.decipher(line);
-        switch (type){
-            case CHAT:
-                out.println(line);
-                out2.println(line);
-                break;
-            case SHOOT:
-                System.out.println(decipheredLine);
-                break;
-        }
-    }
+
 }

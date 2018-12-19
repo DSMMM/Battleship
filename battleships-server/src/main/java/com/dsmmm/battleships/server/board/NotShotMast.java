@@ -7,7 +7,7 @@ class NotShotMast implements Mast {
     }
 
     @Override
-    public Field transform() {
+    public Field destroy() {
         return new ShotMast();
     }
 }
