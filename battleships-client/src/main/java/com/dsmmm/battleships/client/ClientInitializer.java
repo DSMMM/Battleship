@@ -3,6 +3,7 @@ package com.dsmmm.battleships.client;
 
 import com.dsmmm.battleships.client.io.Prefix;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,11 +34,15 @@ class ClientInitializer {
         out.println(Prefix.CHAT.cipher(name + ": " + userInput));
     }
 
+    void requestGenerateFleet() {
+        out.println(Prefix.GENERATE.toString());
+    }
+
     void sendCoordinates(int x, int y) {
         out.println(Prefix.SHOOT.cipher(x + " " + y));
     }
 
-    void listenToServer(TextArea chatId) {
+    void listenToServer(TextArea chatId, Controller controller) {
         Thread t = new Thread(() -> {
             try {
                 String line;
@@ -52,7 +57,7 @@ class ClientInitializer {
                             Printer.print(line);
                             break;
                         case SHIPS:
-                            Printer.print(line);
+                            controller.showFleet(decipheredLine);
                             break;
                         default:
                             Printer.print(line);
