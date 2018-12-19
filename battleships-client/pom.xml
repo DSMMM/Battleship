@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.dsmmm</groupId>
         <artifactId>battleships</artifactId>
-        <version>0.1</version>
+        <version>0.5</version>
     </parent>
 
     <artifactId>battleships-client</artifactId>
