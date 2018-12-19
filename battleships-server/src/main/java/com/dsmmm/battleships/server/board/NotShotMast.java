@@ -7,6 +7,11 @@ class NotShotMast implements Mast {
     }
 
     @Override
+    public int hashCode() {
+        return 1;
+    }
+
+    @Override
     public Field destroy() {
         return new ShotMast();
     }

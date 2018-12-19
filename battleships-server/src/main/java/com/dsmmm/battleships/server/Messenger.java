@@ -27,7 +27,7 @@ class Messenger {
                 out2.println(line);
                 break;
             case SHOOT:
-                System.out.println(decipheredLine);
+                Printer.print(decipheredLine);
                 break;
         }
     }

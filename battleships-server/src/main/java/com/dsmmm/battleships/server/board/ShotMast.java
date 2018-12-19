@@ -8,6 +8,11 @@ class ShotMast implements Mast{
     }
 
     @Override
+    public int hashCode() {
+        return 3;
+    }
+
+    @Override
     public Field destroy() {
         return this;
     }

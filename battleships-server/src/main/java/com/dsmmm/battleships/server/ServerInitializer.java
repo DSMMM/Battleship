@@ -13,21 +13,34 @@ class ServerInitializer {
     void initializeServer() {
         try (ServerSocket serverSocket = new ServerSocket(8189)) {
             while (true) {
-                Socket firstUser = serverSocket.accept();
-                Printer.print("First user has joined.");
-                OutputStream outStream = firstUser.getOutputStream();
-                PrintWriter out = new PrintWriter(
-                    new OutputStreamWriter(outStream, StandardCharsets.UTF_8), true);
-                out.println(Prefix.CHAT.cipher( "Connection established. Please wait for second user."));
-                Socket secondUser = serverSocket.accept();
-                Printer.print("Two users connected. Chatroom initialized.");
-                initializeChatThread(firstUser, secondUser);
-                initializeChatThread(secondUser, firstUser);
+                Socket host = createSocketForHost(serverSocket);
+
+                Socket guest = createSocketForGuest(serverSocket);
+
+                initializeChatThread(host, guest);
+                initializeChatThread(guest, host);
             }
         } catch (IOException e) {
             Printer.print(e.getMessage());
         }
 
+    }
+
+    private Socket createSocketForGuest(ServerSocket serverSocket) throws IOException {
+        Socket guest = serverSocket.accept();
+        Printer.print("Two users connected. Chatroom initialized.");
+        return guest;
+    }
+
+    private Socket createSocketForHost(ServerSocket serverSocket) throws IOException {
+        Socket host = serverSocket.accept();
+        Printer.print("First user has joined.");
+
+        OutputStream outStreamHost = host.getOutputStream();
+        PrintWriter outHost = new PrintWriter(
+            new OutputStreamWriter(outStreamHost, StandardCharsets.UTF_8), true);
+        outHost.println(Prefix.CHAT.cipher( "Connection established. Please wait for second user."));
+        return host;
     }
 
     private void initializeChatThread(Socket home, Socket away) {

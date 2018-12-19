@@ -8,6 +8,11 @@ class ShotWater implements Water{
     }
 
     @Override
+    public int hashCode() {
+        return 4;
+    }
+
+    @Override
     public Field destroy() {
         return this;
     }

@@ -40,11 +40,7 @@ public class Controller implements Initializable {
 
     @FXML
     void inputName() {
-        if(nameId.getText().equals("")) {
-            joinId.setDisable(true);
-        } else {
-            joinId.setDisable(false);
-        }
+        joinId.setDisable(nameId.getText().isEmpty());
     }
 
     @FXML
@@ -66,7 +62,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void fillPane(Pane pane) {
-        for(int i = 0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Button button = new Button();
                 button.setLayoutX(i * SIZE);
@@ -86,7 +82,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void enableBoard(Pane pane) {
-        for(int i = 0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Button button = (Button) pane.lookup("#" + i + "-" + j);
                 button.setDisable(false);

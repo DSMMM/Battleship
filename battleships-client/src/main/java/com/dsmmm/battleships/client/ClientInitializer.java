@@ -45,7 +45,7 @@ class ClientInitializer {
                         chatId.appendText(Prefix.decipher(line) + "\n");
                     }else {
                         //TODO połączyć z drugą planszą i zaznaczać trafienia
-                        System.out.println(Prefix.decipher(line));
+                        Printer.print(Prefix.decipher(line));
                     }
 
                 }
