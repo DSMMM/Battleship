@@ -5,8 +5,7 @@ import org.testng.annotations.Test;
 
 public class NotShotWaterTest {
     @Test
-    public void createNotShotWater()
-    {
+    public void createNotShotWater() {
         // given
         Field waterAsField = new NotShotWater();
         // when
@@ -16,8 +15,7 @@ public class NotShotWaterTest {
     }
 
     @Test
-    public void transformNotShotWaterToShotWater()
-    {
+    public void transformNotShotWaterToShotWater() {
         // given
         Field notShotWater = new NotShotWater();
         ShotWater shotWaterExpected = new ShotWater();
@@ -28,8 +26,7 @@ public class NotShotWaterTest {
     }
 
     @Test
-    public void notShotWaterNotEqualsShotWater()
-    {
+    public void notShotWaterNotEqualsShotWater() {
         // given
         NotShotWater notShotWater = new NotShotWater();
         // when
@@ -39,8 +36,7 @@ public class NotShotWaterTest {
     }
 
     @Test
-    public void notShotWaterNotEqualsNull()
-    {
+    public void notShotWaterNotEqualsNull() {
         // given
         NotShotWater notShotWater;
         // when

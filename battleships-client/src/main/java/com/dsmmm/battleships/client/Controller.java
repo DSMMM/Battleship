@@ -16,21 +16,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    private static final double SIZE = 30.0d;
     private ClientInitializer client;
     @FXML
     private TextField nameId;
-
     @FXML
     private Button joinId;
-
     @FXML
     private TextArea chatId;
-
     @FXML
     private TextField inputChat;
-
-    private static final int SIZE = 30;
-
     @FXML
     private Pane paneEnemy;
 

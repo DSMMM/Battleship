@@ -21,9 +21,9 @@ class ThreadedEchoHandler implements Runnable {
 
     public void run() {
         try (
-                InputStream homeInputStream = home.getInputStream();
-                OutputStream homeOutputStream = home.getOutputStream();
-                OutputStream awayOutputStream = away.getOutputStream()
+            InputStream homeInputStream = home.getInputStream();
+            OutputStream homeOutputStream = home.getOutputStream();
+            OutputStream awayOutputStream = away.getOutputStream()
         ) {
             Scanner scanner = new Scanner(homeInputStream, String.valueOf(CHAT_CHARSET));
 
@@ -49,7 +49,7 @@ class ThreadedEchoHandler implements Runnable {
 
     private PrintWriter getPrintWriter(OutputStream outputStream) {
         return new PrintWriter(
-                new OutputStreamWriter(outputStream, CHAT_CHARSET), true);
+            new OutputStreamWriter(outputStream, CHAT_CHARSET), true);
     }
 
 

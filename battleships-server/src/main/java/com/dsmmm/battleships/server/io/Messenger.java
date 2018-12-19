@@ -3,8 +3,8 @@ package com.dsmmm.battleships.server.io;
 import java.io.PrintWriter;
 
 public class Messenger {
-    private PrintWriter homeOut;
-    private PrintWriter awayOut;
+    private final PrintWriter homeOut;
+    private final PrintWriter awayOut;
 
     public Messenger(PrintWriter homeOut, PrintWriter awayOut) {
         this.homeOut = homeOut;

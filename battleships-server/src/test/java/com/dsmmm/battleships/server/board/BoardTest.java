@@ -19,12 +19,12 @@ public class BoardTest {
     Object[][] coordinateGenerator() {
         Object[][] objects = new Object[10][1];
         for (int i = 1; i <= 10; i++) {
-            objects[i-1] = new Object[]{new Coordinates(new Column(i), new Row(i))};
+            objects[i - 1] = new Object[]{new Coordinates(new Column(i), new Row(i))};
         }
-        return  objects;
+        return objects;
     }
 
-    @Test (dataProvider = "coordinateGenerator")
+    @Test(dataProvider = "coordinateGenerator")
     public void getFieldByCoordinate(Coordinates coordinates) {
         //given
         Board board = new Board(new Dimension(10));

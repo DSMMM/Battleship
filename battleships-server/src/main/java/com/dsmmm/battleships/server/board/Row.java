@@ -2,7 +2,7 @@ package com.dsmmm.battleships.server.board;
 
 import java.util.Objects;
 
-class Row implements Coordinate{
+class Row implements Coordinate {
     private final int value;
 
     Row(int value) {

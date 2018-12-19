@@ -15,13 +15,12 @@ class ClientInitializer {
     private final String name;
     private PrintWriter out;
     private BufferedReader in;
-    private Socket echoSocket;
 
     ClientInitializer(String name) {
         this.name = name;
-        try {
+        try(
+            Socket echoSocket = new Socket("vps624409.ovh.net", 8189)) {
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
-            echoSocket = new Socket("vps624409.ovh.net", 8189);
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         } catch (IOException e) {

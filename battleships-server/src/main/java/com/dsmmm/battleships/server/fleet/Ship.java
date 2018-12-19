@@ -6,9 +6,10 @@ import com.dsmmm.battleships.server.board.NotShotMast;
 
 import java.util.Map;
 
-public interface Ship {
+interface Ship {
 
     int countStandingMasts();
+
     boolean takeShotOnShip(Coordinates coordinates);
 
     default Map<Coordinates, Mast> putMastsToShip(Map<Coordinates, Mast> givenMap, Coordinates... coordinates) {
@@ -22,7 +23,7 @@ public interface Ship {
         return (int) mapOfMasts.entrySet().stream().filter(s -> s.getValue() instanceof NotShotMast).count();
     }
 
-    default boolean takeShotOnShip(Coordinates coordinates, Map<Coordinates,Mast> mapOfMasts) {
+    default boolean takeShotOnShip(Coordinates coordinates, Map<Coordinates, Mast> mapOfMasts) {
         if (checkIfShipContainsCoordinates(coordinates, mapOfMasts) && checkIfCoordinatesAreNotShot(coordinates, mapOfMasts)) {
             mapOfMasts.put(coordinates, mapOfMasts.get(coordinates).destroy());
             return true;
@@ -30,7 +31,7 @@ public interface Ship {
         return false;
     }
 
-    default boolean checkIfShipContainsCoordinates(Coordinates coordinates, Map<Coordinates,Mast> mapOfMasts) {
+    default boolean checkIfShipContainsCoordinates(Coordinates coordinates, Map<Coordinates, Mast> mapOfMasts) {
         return mapOfMasts.containsKey(coordinates);
     }
 

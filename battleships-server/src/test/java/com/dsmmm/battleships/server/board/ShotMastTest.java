@@ -5,8 +5,7 @@ import org.testng.annotations.Test;
 
 public class ShotMastTest {
     @Test
-    public void createShotMast()
-    {
+    public void createShotMast() {
         // given
         Field mastShotAsField = new ShotMast();
         // when
@@ -16,8 +15,7 @@ public class ShotMastTest {
     }
 
     @Test
-    public void tryToTransformShotMast()
-    {
+    public void tryToTransformShotMast() {
         // given
         Field shotMastToTransform = new ShotMast();
         // when
@@ -27,8 +25,7 @@ public class ShotMastTest {
     }
 
     @Test
-    public void shotMastNotEqualsNotShotMast()
-    {
+    public void shotMastNotEqualsNotShotMast() {
         // given
         ShotMast shotMast = new ShotMast();
         // when
@@ -38,8 +35,7 @@ public class ShotMastTest {
     }
 
     @Test
-    public void shotMastNotEqualsNull()
-    {
+    public void shotMastNotEqualsNull() {
         // given
         ShotMast shotMast;
         // when

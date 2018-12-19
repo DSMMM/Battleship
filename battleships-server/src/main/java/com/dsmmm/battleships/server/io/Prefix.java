@@ -10,7 +10,7 @@ enum Prefix {
     HIT("/hit"),
     GENERATE("/generate");
 
-    private String key;
+    private final String key;
 
     Prefix(String key) {
         this.key = key;

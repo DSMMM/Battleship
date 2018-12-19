@@ -1,6 +1,6 @@
 package com.dsmmm.battleships.server.board;
 
-class ShotWater implements Water{
+class ShotWater implements Water {
 
     @Override
     public boolean equals(Object obj) {

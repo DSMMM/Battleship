@@ -4,9 +4,7 @@ import com.dsmmm.battleships.server.board.Coordinates;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 @Test
 public class OneMastShipTest {
@@ -66,7 +64,7 @@ public class OneMastShipTest {
     @Test
     public void isShotTrueIfOnShip() {
         //given
-        Coordinates c1 = new Coordinates(2,2);
+        Coordinates c1 = new Coordinates(2, 2);
         //when
         Ship oneMastShip = new OneMastShip(c1);
         //then
@@ -76,9 +74,9 @@ public class OneMastShipTest {
     @Test
     public void isShotFalseIfOutsideShip() {
         //given
-        Coordinates c1 = new Coordinates(2,2);
+        Coordinates c1 = new Coordinates(2, 2);
         //when
-        Coordinates c2 = new Coordinates(2,1);
+        Coordinates c2 = new Coordinates(2, 1);
         Ship oneMastShip = new OneMastShip(c1);
         //then
         assertFalse(oneMastShip.takeShotOnShip(c2));

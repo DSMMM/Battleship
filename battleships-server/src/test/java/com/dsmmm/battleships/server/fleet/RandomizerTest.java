@@ -3,7 +3,7 @@ package com.dsmmm.battleships.server.fleet;
 import com.dsmmm.battleships.server.board.Coordinates;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class RandomizerTest {
 
@@ -17,8 +17,8 @@ public class RandomizerTest {
         //when
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= 10; j++) {
-                Coordinates toShoot = new Coordinates(i,j);
-                if(fleet.takeShotOnFleet(toShoot)) countMasts++;
+                Coordinates toShoot = new Coordinates(i, j);
+                if (fleet.takeShotOnFleet(toShoot)) countMasts++;
                 else countWaters++;
             }
         }

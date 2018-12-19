@@ -9,13 +9,13 @@ import java.util.*;
 
 class Randomizer {
 
-    private Fleet fleet = new Fleet();
-    private Set<Coordinates> possibleCoordinates = new Board().getAllPossibleCoordinates();
-    private Dimension dimension = new Dimension();
     private static final int NUMBER_OF_4_MAST_SHIPS = 1;
     private static final int NUMBER_OF_3_MAST_SHIPS = 2;
     private static final int NUMBER_OF_2_MAST_SHIPS = 3;
     private static final int NUMBER_OF_1_MAST_SHIPS = 4;
+    private final Fleet fleet = new Fleet();
+    private final Set<Coordinates> possibleCoordinates = new Board().getAllPossibleCoordinates();
+    private final Dimension dimension = new Dimension();
 
     Fleet generateRandomFleet() {
         setRandom4Masts();
