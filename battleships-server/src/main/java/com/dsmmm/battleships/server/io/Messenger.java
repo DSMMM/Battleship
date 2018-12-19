@@ -24,13 +24,13 @@ public class Messenger {
         awayOut.println(Prefix.CHAT.cipher(message));
     }
 
-    public void redirectMessage(PrintWriter out, PrintWriter out2, String line) {
+    public void redirectMessage(PrintWriter homeOut, PrintWriter awayOut, String line) {
         Prefix type = Prefix.getType(line);
-        String decipheredLine = Prefix.decipher(line);
+
         switch (type) {
             case CHAT:
-                out.println(line);
-                out2.println(line);
+                homeOut.println(line);
+                awayOut.println(line);
                 break;
             case SHOOT:
                 Printer.print(line);
