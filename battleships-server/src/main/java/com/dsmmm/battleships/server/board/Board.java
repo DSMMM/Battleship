@@ -5,7 +5,6 @@ import com.dsmmm.battleships.server.fleet.Randomizer;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class Board {
     private final Dimension dimension;
@@ -18,7 +17,16 @@ public class Board {
         this.fleet = new Randomizer().generateRandomFleet();
 
         placeShips();
+
         floodWithWater();
+    }
+
+    public String generateCodesOfShipCoordinates() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Coordinates coordinates : fleet.getShipsCoordinates()) {
+            stringBuilder.append(coordinates + ",");
+        }
+        return stringBuilder.toString();
     }
 
     private void placeShips() {
