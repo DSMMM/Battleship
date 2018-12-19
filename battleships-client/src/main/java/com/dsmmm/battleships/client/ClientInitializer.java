@@ -1,6 +1,7 @@
 package com.dsmmm.battleships.client;
 
 
+import com.dsmmm.battleships.client.io.Prefix;
 import javafx.scene.control.TextArea;
 
 import java.io.BufferedReader;
@@ -14,26 +15,26 @@ class ClientInitializer {
     private final String name;
     private PrintWriter out;
     private BufferedReader in;
+    private Socket echoSocket;
 
     ClientInitializer(String name) {
         this.name = name;
         try {
+            echoSocket = new Socket("vps624409.ovh.net", 8189);
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
-            Socket echoSocket = new Socket("vps624409.ovh.net", 8189);
-            out =
-                new PrintWriter(echoSocket.getOutputStream(), true);
-            in =
-                new BufferedReader(
-                    new InputStreamReader(echoSocket.getInputStream()));
-
+            out = new PrintWriter(echoSocket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         } catch (IOException e) {
             Printer.print(e.getMessage());
         }
-
     }
 
     void sendMessage(String userInput) {
-        out.println(name + ": " + userInput);
+        out.println(Prefix.CHAT.cipher(name + ": " + userInput));
+    }
+
+    void sendCoordinates(int x, int y) {
+        out.println(Prefix.SHOOT.cipher(x + " " + y));
     }
 
     void listenToServer(TextArea chatId) {
@@ -41,7 +42,22 @@ class ClientInitializer {
             try {
                 String line;
                 while ((line = in.readLine()) != null) {
-                    chatId.appendText(line + "\n");
+                    Prefix type = Prefix.getType(line);
+                    String decipheredLine = Prefix.decipher(line);
+                    switch (type) {
+                        case CHAT:
+                            chatId.appendText(decipheredLine + "\n");
+                            break;
+                        case HIT:
+                            Printer.print(line);
+                            break;
+                        case SHIPS:
+                            Printer.print(line);
+                            break;
+                        default:
+                            Printer.print(line);
+                            break;
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();

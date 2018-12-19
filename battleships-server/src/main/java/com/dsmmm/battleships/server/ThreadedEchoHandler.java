@@ -1,5 +1,8 @@
 package com.dsmmm.battleships.server;
 
+import com.dsmmm.battleships.server.io.Messenger;
+import com.dsmmm.battleships.server.io.Printer;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.Charset;
@@ -7,40 +10,47 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 class ThreadedEchoHandler implements Runnable {
-    private final Socket incoming;
-    private final Socket incoming2;
+    private final Socket home;
+    private final Socket away;
+    private static final Charset CHAT_CHARSET = StandardCharsets.UTF_8;
 
-
-    public ThreadedEchoHandler(Socket incomingSocket, Socket incomingSocket2) {
-        incoming = incomingSocket;
-        incoming2 = incomingSocket2;
+    ThreadedEchoHandler(Socket home, Socket away) {
+        this.home = home;
+        this.away = away;
     }
 
     public void run() {
         try (
-            InputStream inStream = incoming.getInputStream();
-            OutputStream outStream = incoming.getOutputStream();
-            OutputStream outStream2 = incoming2.getOutputStream()
+            InputStream homeInputStream = home.getInputStream();
+            OutputStream homeOutputStream = home.getOutputStream();
+            OutputStream awayOutputStream = away.getOutputStream()
         ) {
-            Charset chatCharset = StandardCharsets.UTF_8;
-            Scanner in = new Scanner(inStream, String.valueOf(chatCharset));
-            PrintWriter out = new PrintWriter(
-                new OutputStreamWriter(outStream, chatCharset), true);
-            PrintWriter out2 = new PrintWriter(
-                new OutputStreamWriter(outStream2, chatCharset), true);
-            out.println("Chat opened.");
-            boolean done = false;
+            Scanner scanner = new Scanner(homeInputStream, String.valueOf(CHAT_CHARSET));
 
-            while (!done && in.hasNextLine()) {
-                String line;
-                line = in.nextLine();
-                out.println(line);
-                out2.println(line);
+            PrintWriter homeOut = getPrintWriter(homeOutputStream);
+            PrintWriter awayOut = getPrintWriter(awayOutputStream);
 
-                if (line.trim().equals("BYE")) done = true;
+            Messenger messenger = new Messenger(homeOut, awayOut);
+            messenger.sendToFirstPlayerChat("Chat opened.");
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                messenger.redirectMessage(homeOut, awayOut, line);
             }
+
+            messenger.sendToBothPlayersChat("Your friend [has] left [the] chat! Status: disconnected");
+            Printer.print("Chat disconnected");
+
         } catch (IOException e) {
-            e.printStackTrace();
+            //HINT: true error handling might be more useful ;-) //TODO
+            Printer.print(e.getMessage());
         }
     }
+
+    private PrintWriter getPrintWriter(OutputStream outputStream) {
+        return new PrintWriter(
+            new OutputStreamWriter(outputStream, CHAT_CHARSET), true);
+    }
+
+
 }
