@@ -14,21 +14,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    private static final int SIZE = 30;
     private ClientInitializer client;
     @FXML
     private TextField nameId;
-
     @FXML
     private Button joinId;
-
     @FXML
     private TextArea chatId;
-
     @FXML
     private TextField inputChat;
-
-    private static final int SIZE = 30;
-
     @FXML
     private Pane paneEnemy;
 
@@ -38,7 +33,7 @@ public class Controller implements Initializable {
 
     @FXML
     void inputName() {
-        if(nameId.getText().equals("")) {
+        if (nameId.getText().equals("")) {
             joinId.setDisable(true);
         } else {
             joinId.setDisable(false);
@@ -63,7 +58,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void fillPane(Pane pane) {
-        for(int i = 0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Button button = new Button();
                 button.setLayoutX(i * SIZE);
@@ -74,7 +69,7 @@ public class Controller implements Initializable {
                 button.setPrefWidth(SIZE);
                 final int high = i + 1;
                 final int width = j + 1;
-                button.setOnAction(event-> System.out.println(high + ", " +  width));
+                button.setOnAction(event -> Printer.print(high + ", " + width));
                 button.setId(String.valueOf(i));
                 pane.getChildren().add(button);
             }

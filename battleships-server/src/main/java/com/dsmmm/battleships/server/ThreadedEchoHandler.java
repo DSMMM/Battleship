@@ -11,7 +11,6 @@ class ThreadedEchoHandler implements Runnable {
     private final Socket incoming2;
 
 
-
     public ThreadedEchoHandler(Socket incomingSocket, Socket incomingSocket2) {
         incoming = incomingSocket;
         incoming2 = incomingSocket2;
@@ -30,9 +29,8 @@ class ThreadedEchoHandler implements Runnable {
             PrintWriter out2 = new PrintWriter(
                 new OutputStreamWriter(outStream2, chatCharset), true);
             out.println("Chat opened.");
-            boolean done = false;
 
-            while (!done && in.hasNextLine()) {
+            while (in.hasNextLine()) {
                 String line;
                 line = in.nextLine();
                 out.println(line);
@@ -40,7 +38,7 @@ class ThreadedEchoHandler implements Runnable {
             }
             out.println("Your friend left chat! Status: disconnected");
             out2.println("Your friend left chat! Status: disconnected");
-            System.out.println("Chat disconnected");
+            Printer.print("Chat disconnected");
         } catch (IOException e) {
             e.printStackTrace();
         }

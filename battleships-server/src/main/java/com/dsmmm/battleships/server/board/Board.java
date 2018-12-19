@@ -5,16 +5,16 @@ import java.util.Map;
 import java.util.Set;
 
 public class Board {
-    private Map<Coordinates, Field> mapOfFields;
     private final Dimension dimension;
+    private Map<Coordinates, Field> mapOfFields;
 
-    Board(Dimension dimension)  {
+    Board(Dimension dimension) {
         this.dimension = dimension;
         this.mapOfFields = new HashMap<>();
         initializeBoard();
     }
 
-    public Board()  {
+    public Board() {
         this(new Dimension());
         this.mapOfFields = new HashMap<>();
         initializeBoard();
@@ -25,15 +25,15 @@ public class Board {
     }
 
 
-    private void initializeBoard(){
+    private void initializeBoard() {
         for (Column c = new Column(1); c.inRange(dimension); c = c.increment(1)) {
             rowGenerator(c);
         }
     }
 
     private void rowGenerator(Column c) {
-        for(Row r = new Row(1); r.inRange(dimension); r = r.increment(1)) {
-            Coordinates coordinates = new Coordinates(c,r);
+        for (Row r = new Row(1); r.inRange(dimension); r = r.increment(1)) {
+            Coordinates coordinates = new Coordinates(c, r);
             mapOfFields.put(coordinates, new NotShotWater());
         }
     }

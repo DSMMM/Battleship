@@ -4,7 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 public class CoordinatesTest {
     @Test
@@ -32,15 +33,15 @@ public class CoordinatesTest {
     @DataProvider
     Object[][] neighbours() {
         return new Object[][]{
-                {new Column(1), new Row(1), Side.RIGHT, new Column(2), new Row(1)},
-                {new Column(3), new Row(2), Side.DOWN, new Column(3), new Row(3)},
-                {new Column(2), new Row(2), Side.UP, new Column(2), new Row(1)},
-                {new Column(2), new Row(4), Side.LEFT, new Column(1), new Row(4)},
-                {new Column(6), new Row(2), Side.UP_RIGHT, new Column(7), new Row(1)},
-                {new Column(2), new Row(2), Side.DOWN_RIGHT, new Column(3), new Row(3)},
-                {new Column(3), new Row(2), Side.UP_LEFT, new Column(2), new Row(1)},
-                {new Column(2), new Row(3), Side.DOWN_LEFT, new Column(1), new Row(4)},
-                {new Column(3), new Row(5), Side.RIGHT, new Column(4), new Row(5)},
+            {new Column(1), new Row(1), Side.RIGHT, new Column(2), new Row(1)},
+            {new Column(3), new Row(2), Side.DOWN, new Column(3), new Row(3)},
+            {new Column(2), new Row(2), Side.UP, new Column(2), new Row(1)},
+            {new Column(2), new Row(4), Side.LEFT, new Column(1), new Row(4)},
+            {new Column(6), new Row(2), Side.UP_RIGHT, new Column(7), new Row(1)},
+            {new Column(2), new Row(2), Side.DOWN_RIGHT, new Column(3), new Row(3)},
+            {new Column(3), new Row(2), Side.UP_LEFT, new Column(2), new Row(1)},
+            {new Column(2), new Row(3), Side.DOWN_LEFT, new Column(1), new Row(4)},
+            {new Column(3), new Row(5), Side.RIGHT, new Column(4), new Row(5)},
         };
     }
 

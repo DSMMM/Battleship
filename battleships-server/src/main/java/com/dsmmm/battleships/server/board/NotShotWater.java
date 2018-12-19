@@ -7,6 +7,11 @@ class NotShotWater implements Water {
     }
 
     @Override
+    public int hashCode() {
+        return 2;
+    }
+
+    @Override
     public Water transform() {
         return new ShotWater();
     }

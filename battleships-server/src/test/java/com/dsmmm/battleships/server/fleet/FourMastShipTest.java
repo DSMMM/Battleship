@@ -10,8 +10,6 @@ import static org.testng.Assert.*;
 public class FourMastShipTest {
 
 
-
-
     public void create4mastShip() {
         //given
         Ship fourMast = getDefaultShip();
@@ -42,7 +40,7 @@ public class FourMastShipTest {
 
     public void isNotMastOnGivenCoordinate() {
         // given
-        Coordinates outside = new Coordinates(9,9);
+        Coordinates outside = new Coordinates(9, 9);
         Ship fourMast = getDefaultShip();
         // when
         boolean isShipShoot = fourMast.takeShotOnShip(outside);

@@ -12,6 +12,6 @@ public class Dimension {
     }
 
     boolean greaterThanOrEqual(int value) {
-        return dimensionValue >=value;
+        return dimensionValue >= value;
     }
 }

@@ -44,7 +44,7 @@ public class Coordinates {
     public boolean checkIfNeighbourInRange(Side side, Dimension dimension) {
         Column newColumn = column.increment(side.getX());
         Row newRow = row.increment(side.getY());
-        if(checkIfNotPossible(newColumn, coordinate -> coordinate.inRange(dimension))) return false;
+        if (checkIfNotPossible(newColumn, coordinate -> coordinate.inRange(dimension))) return false;
         return !checkIfNotPossible(newRow, coordinate -> coordinate.inRange(dimension));
     }
 
@@ -59,8 +59,8 @@ public class Coordinates {
     @Override
     public String toString() {
         return "Coordinates{" +
-                "column=" + column +
-                ", row=" + row +
-                '}';
+            "column=" + column +
+            ", row=" + row +
+            '}';
     }
 }

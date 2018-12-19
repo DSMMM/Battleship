@@ -4,9 +4,7 @@ import com.dsmmm.battleships.server.board.Coordinates;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 @Test
 public class ThreeMastShipTest {
@@ -32,7 +30,7 @@ public class ThreeMastShipTest {
         // given
 
         Ship threeMast = getDefaultShip();
-        Coordinates c1 = new Coordinates(1,1);
+        Coordinates c1 = new Coordinates(1, 1);
 
         // when
         boolean isShipShoot = threeMast.takeShotOnShip(c1);
@@ -47,7 +45,7 @@ public class ThreeMastShipTest {
         Ship threeMast = getDefaultShip();
 
         // when
-        Coordinates outside = new Coordinates(9,9);
+        Coordinates outside = new Coordinates(9, 9);
         boolean isShipShoot = threeMast.takeShotOnShip(outside);
         // then
 

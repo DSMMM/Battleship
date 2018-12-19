@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class FleetTest {
 
 
-    Fleet fleet;
+    private Fleet fleet;
 
     @BeforeClass
     void setup() {
