@@ -1,10 +1,14 @@
 package com.dsmmm.battleships.server.board;
 
-class Dimension {
+public class Dimension {
     private final int dimensionValue;
 
-    Dimension(int dimensionValue) {
+    public Dimension(int dimensionValue) {
         this.dimensionValue = dimensionValue;
+    }
+
+    public Dimension() {
+        this(10);
     }
 
     boolean greaterThanOrEqual(int value) {

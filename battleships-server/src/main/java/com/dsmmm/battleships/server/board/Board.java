@@ -2,13 +2,20 @@ package com.dsmmm.battleships.server.board;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-class Board {
+public class Board {
     private Map<Coordinates, Field> mapOfFields;
     private final Dimension dimension;
 
-    Board(Dimension dimension)  {
+    public Board(Dimension dimension)  {
         this.dimension = dimension;
+        this.mapOfFields = new HashMap<>();
+        initializeBoard();
+    }
+
+    public Board()  {
+        this.dimension = new Dimension();
         this.mapOfFields = new HashMap<>();
         initializeBoard();
     }
@@ -16,6 +23,7 @@ class Board {
     Field getField(Coordinates coordinates) {
         return mapOfFields.get(coordinates);
     }
+
 
     private void initializeBoard(){
         for (Column c = new Column(1); c.inRange(dimension); c = c.increment(1)) {
@@ -28,5 +36,9 @@ class Board {
             Coordinates coordinates = new Coordinates(c,r);
             mapOfFields.put(coordinates, new NotShotWater());
         }
+    }
+
+    public Set<Coordinates> getAllPossibleCoordinates() {
+        return mapOfFields.keySet();
     }
 }
