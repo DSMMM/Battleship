@@ -25,4 +25,8 @@ class OneMastShip implements Ship {
     public boolean takeShotOnShip(Coordinates coordinates) {
         return takeShotOnShip(coordinates, mapOfMasts);
     }
+
+    public boolean checkIfShipContainsCoordinates(Coordinates coordinates) {
+        return checkIfShipContainsCoordinates(coordinates, mapOfMasts);
+    }
 }

@@ -38,5 +38,24 @@ public class Fleet {
         return false;
     }
 
+    public void printFleet() {
+        for(int i = 1; i<=10; i++) {
+            for(int j = 1; j<=10; j++) {
+                Coordinates c = new Coordinates(i,j);
+                boolean print = false;
+                for(Ship s: ships) {
+                    if(s.checkIfShipContainsCoordinates(c)) {
+                        print = true;
+                        break;
+                    }
+                }
+                if(print) System.out.print(" X ");
+                else System.out.print("   ");
+            }
+            System.out.println();
+        }
+
+    }
+
 
 }
