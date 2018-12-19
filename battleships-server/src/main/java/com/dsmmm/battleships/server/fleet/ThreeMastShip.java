@@ -25,7 +25,4 @@ class ThreeMastShip implements Ship {
         return takeShotOnShip(coordinates, mapOfMasts);
     }
 
-/*    public boolean checkIfShipContainsCoordinates(Coordinates coordinates) {
-        return checkIfShipContainsCoordinates(coordinates, mapOfMasts);
-    }*/
 }

@@ -10,7 +10,6 @@ public interface Ship {
 
     int countStandingMasts();
     boolean takeShotOnShip(Coordinates coordinates);
-    //boolean checkIfShipContainsCoordinates(Coordinates coordinates);
 
     default Map<Coordinates, Mast> putMastsToShip(Map<Coordinates, Mast> givenMap, Coordinates... coordinates) {
         for (Coordinates c : coordinates) {
