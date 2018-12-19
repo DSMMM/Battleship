@@ -20,7 +20,7 @@ public class NotShotMastTest {
         Field notShotMast = new NotShotMast();
         ShotMast shotMastExpected = new ShotMast();
         // when
-        Field shotMast = notShotMast.transform();
+        Field shotMast = notShotMast.destroy();
         // then
         Assert.assertEquals(shotMastExpected, shotMast);
     }

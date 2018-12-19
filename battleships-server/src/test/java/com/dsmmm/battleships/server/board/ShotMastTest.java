@@ -19,7 +19,7 @@ public class ShotMastTest {
         // given
         Field shotMastToTransform = new ShotMast();
         // when
-        Field shotMast = shotMastToTransform.transform();
+        Field shotMast = shotMastToTransform.destroy();
         // then
         Assert.assertEquals(shotMastToTransform, shotMast);
     }

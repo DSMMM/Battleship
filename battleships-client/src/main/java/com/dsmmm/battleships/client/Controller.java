@@ -1,6 +1,8 @@
 package com.dsmmm.battleships.client;
 
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    private static final int SIZE = 30;
+    private static final double SIZE = 30.0d;
     private ClientInitializer client;
     @FXML
     private TextField nameId;
@@ -33,11 +35,7 @@ public class Controller implements Initializable {
 
     @FXML
     void inputName() {
-        if (nameId.getText().equals("")) {
-            joinId.setDisable(true);
-        } else {
-            joinId.setDisable(false);
-        }
+        joinId.setDisable(nameId.getText().isEmpty());
     }
 
     @FXML
@@ -46,6 +44,7 @@ public class Controller implements Initializable {
         client.listenToServer(chatId);
         joinId.setDisable(true);
         nameId.setDisable(true);
+        enableBoard(paneEnemy);
     }
 
     @FXML
@@ -64,17 +63,35 @@ public class Controller implements Initializable {
                 button.setLayoutX(i * SIZE);
                 button.setLayoutY(j * SIZE);
 
-
                 button.setPrefHeight(SIZE);
                 button.setPrefWidth(SIZE);
                 final int high = i + 1;
                 final int width = j + 1;
-                button.setOnAction(event -> Printer.print(high + ", " + width));
-                button.setId(String.valueOf(i));
+                button.setOnAction(onFieldClickEvent(high, width, button));
+                button.setId(high + "-" + width);
+                button.setDisable(true);
                 pane.getChildren().add(button);
             }
         }
     }
+
+    @FXML
+    private void enableBoard(Pane pane) {
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
+                Button button = (Button) pane.lookup("#" + i + "-" + j);
+                button.setDisable(false);
+            }
+        }
+    }
+
+    private EventHandler<ActionEvent> onFieldClickEvent(int high, int width, Button button) {
+        return (ActionEvent event) -> {
+            client.sendCoordinates(width, high);
+            button.setStyle("-fx-background-color: black;");
+        };
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

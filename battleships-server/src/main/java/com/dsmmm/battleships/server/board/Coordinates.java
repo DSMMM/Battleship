@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 public class Coordinates {
 
-    private final Column column;
-    private final Row row;
+    final Column column;
+    final Row row;
 
     public Coordinates(Column column, Row row) {
         this.column = column;
@@ -49,7 +49,7 @@ public class Coordinates {
     }
 
     private void checkIfInRange(Coordinate coordinate, Predicate<Coordinate> predicate) {
-        if (!predicate.test(coordinate)) throw new OutOfBoardException("Coordinate out of dimension");
+        if (!predicate.test(coordinate)) throw new OutOfBoardException("Coordinate out of board");
     }
 
     private boolean checkIfNotPossible(Coordinate coordinate, Predicate<Coordinate> predicate) {

@@ -12,7 +12,7 @@ public class NotShotMast implements Mast {
     }
 
     @Override
-    public Mast transform() {
+    public Mast destroy() {
         return new ShotMast();
     }
 }

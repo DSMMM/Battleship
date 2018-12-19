@@ -13,7 +13,7 @@ class ShotMast implements Mast {
     }
 
     @Override
-    public Mast transform() {
+    public Mast destroy() {
         return this;
     }
 }

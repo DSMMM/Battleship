@@ -12,7 +12,7 @@ class NotShotWater implements Water {
     }
 
     @Override
-    public Water transform() {
+    public Water destroy() {
         return new ShotWater();
     }
 }

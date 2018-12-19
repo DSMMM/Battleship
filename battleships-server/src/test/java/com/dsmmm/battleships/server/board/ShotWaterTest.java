@@ -19,7 +19,7 @@ public class ShotWaterTest {
         // given
         Field shotWaterToTransform = new ShotWater();
         // when
-        Field shotWater = shotWaterToTransform.transform();
+        Field shotWater = shotWaterToTransform.destroy();
         // then
         Assert.assertEquals(shotWaterToTransform, shotWater);
     }

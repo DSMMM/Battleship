@@ -25,7 +25,7 @@ interface Ship {
 
     default boolean takeShotOnShip(Coordinates coordinates, Map<Coordinates, Mast> mapOfMasts) {
         if (checkIfShipContainsCoordinates(coordinates, mapOfMasts) && checkIfCoordinatesAreNotShot(coordinates, mapOfMasts)) {
-            mapOfMasts.put(coordinates, mapOfMasts.get(coordinates).transform());
+            mapOfMasts.put(coordinates, mapOfMasts.get(coordinates).destroy());
             return true;
         }
         return false;
