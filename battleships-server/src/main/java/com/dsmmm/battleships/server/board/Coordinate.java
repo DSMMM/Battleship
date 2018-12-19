@@ -1,7 +1,8 @@
 package com.dsmmm.battleships.server.board;
 
 /**
- * @TODO: DOCUMENT ME
+ * I'm a happy coordinate created by
+ * @author Dominika.
  * HINT: how about Identifier as a name?
  */
 public interface Coordinate {

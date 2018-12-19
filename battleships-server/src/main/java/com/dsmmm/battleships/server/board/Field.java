@@ -1,8 +1,12 @@
 package com.dsmmm.battleships.server.board;
 
 /**
- * @TODO: DOCUMENT ME
+ * Field in the board
  */
 public interface Field {
+    /**
+     * Transform this field to shot type
+     * @return Shot field
+     */
     Field destroy();
 }

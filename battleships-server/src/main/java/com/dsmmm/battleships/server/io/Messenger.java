@@ -2,6 +2,9 @@ package com.dsmmm.battleships.server.io;
 
 import java.io.PrintWriter;
 
+/**
+ * Sends messages to clients and redirects received messages
+ */
 public class Messenger {
     private final PrintWriter homeOut;
     private final PrintWriter awayOut;
