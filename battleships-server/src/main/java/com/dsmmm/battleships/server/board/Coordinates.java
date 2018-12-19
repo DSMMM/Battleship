@@ -58,9 +58,6 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return "Coordinates{" +
-            "column=" + column +
-            ", row=" + row +
-            '}';
+        return "#" + column + "-" + row;
     }
 }
