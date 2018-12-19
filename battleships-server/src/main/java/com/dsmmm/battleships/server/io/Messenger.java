@@ -1,5 +1,7 @@
 package com.dsmmm.battleships.server.io;
 
+import com.dsmmm.battleships.server.board.Board;
+
 import java.io.PrintWriter;
 
 /**
@@ -39,8 +41,7 @@ public class Messenger {
                 Printer.print(line);
                 break;
             case GENERATE:
-                Printer.print(line);
-//                homeOut.println(Prefix.SHIPS.cipher("tu dodac koordynaty statkow"));
+                homeOut.println(Prefix.SHIPS.cipher(new Board().generateCodesOfShipCoordinates()));
                 break;
             default:
                 Printer.print(line);

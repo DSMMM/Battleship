@@ -1,6 +1,7 @@
 package com.dsmmm.battleships.client;
 
 
+import com.dsmmm.battleships.client.io.Prefix;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -28,8 +29,8 @@ public class Controller implements Initializable {
     private TextField inputChat;
     @FXML
     private Pane paneEnemy;
-
-
+    @FXML
+    private Button generateFleet;
     @FXML
     private Pane paneFleet;
 
@@ -41,10 +42,11 @@ public class Controller implements Initializable {
     @FXML
     void join() {
         client = new ClientInitializer(nameId.getText());
-        client.listenToServer(chatId);
+        client.listenToServer(chatId, this);
         joinId.setDisable(true);
         nameId.setDisable(true);
         enableBoard(paneEnemy);
+        generateFleet.setDisable(false);
     }
 
     @FXML
@@ -75,7 +77,6 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
     private void enableBoard(Pane pane) {
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= 10; j++) {
@@ -85,13 +86,35 @@ public class Controller implements Initializable {
         }
     }
 
+    private void resetFleet() {
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
+                Button button = (Button) paneFleet.lookup("#" + i + "-" + j);
+                button.setStyle("-fx-opacity: 0.5 !important;");
+            }
+        }
+    }
+
+    void showFleet(String toDecode) {
+        resetFleet();
+        String[] lines = toDecode.split(",");
+        for (String s: lines) {
+            Button button = (Button) paneFleet.lookup(s);
+            button.setStyle("-fx-opacity: 1.0 !important;");
+        }
+    }
+
+    @FXML
+    void generateFleet() {
+        client.requestGenerateFleet();
+    }
+
     private EventHandler<ActionEvent> onFieldClickEvent(int high, int width, Button button) {
         return (ActionEvent event) -> {
             client.sendCoordinates(width, high);
             button.setStyle("-fx-background-color: black;");
         };
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
