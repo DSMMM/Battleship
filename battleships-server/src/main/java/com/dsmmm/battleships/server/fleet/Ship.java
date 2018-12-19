@@ -38,5 +38,4 @@ interface Ship {
     default boolean checkIfCoordinatesAreNotShot(Coordinates coordinates, Map<Coordinates, Mast> mapOfMasts) {
         return mapOfMasts.get(coordinates).equals(new NotShotMast());
     }
-
 }

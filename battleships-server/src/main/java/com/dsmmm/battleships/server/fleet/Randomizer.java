@@ -7,17 +7,27 @@ import com.dsmmm.battleships.server.board.Side;
 
 import java.util.*;
 
-class Randomizer {
+public class Randomizer {
 
     private static final int NUMBER_OF_4_MAST_SHIPS = 1;
     private static final int NUMBER_OF_3_MAST_SHIPS = 2;
     private static final int NUMBER_OF_2_MAST_SHIPS = 3;
     private static final int NUMBER_OF_1_MAST_SHIPS = 4;
     private final Fleet fleet = new Fleet();
-    private final Set<Coordinates> possibleCoordinates = new Board().getAllPossibleCoordinates();
+    private final Set<Coordinates> possibleCoordinates;
     private final Dimension dimension = new Dimension();
 
-    Fleet generateRandomFleet() {
+    public Randomizer() {
+        this.possibleCoordinates = new HashSet<>();
+        for(int column = 1; column<=10; column++) {
+            for(int row = 1; row<=10; row++) {
+                possibleCoordinates.add(new Coordinates(column,row));
+            }
+        }
+
+    }
+
+    public Fleet generateRandomFleet() {
         setRandom4Masts();
         setRandom3Masts();
         setRandom2Masts();

@@ -2,6 +2,7 @@ package com.dsmmm.battleships.server.board;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class BoardTest {
@@ -15,22 +16,21 @@ public class BoardTest {
         Assert.assertNotNull(board);
     }
 
-    @DataProvider
-    Object[][] coordinateGenerator() {
-        Object[][] objects = new Object[10][1];
-        for (int i = 1; i <= 10; i++) {
-            objects[i - 1] = new Object[]{new Coordinates(new Column(i), new Row(i))};
-        }
-        return objects;
-    }
-
-    @Test(dataProvider = "coordinateGenerator")
-    public void getFieldByCoordinate(Coordinates coordinates) {
+    @Test
+    public void createBoardWithFleet() {
         //given
-        Board board = new Board(new Dimension(10));
+        Board board = new Board();
+        int countWater = 0;
+        int countMast = 0;
         //when
-        Field field = board.getField(coordinates);
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
+                if (board.getField(new Coordinates(i, j)) instanceof Water) countWater++;
+                else countMast++;
+            }
+        }
         //then
-        Assert.assertEquals(field, new NotShotWater());
+        Assert.assertEquals(countWater, 80);
+        Assert.assertEquals(countMast, 20);
     }
 }
