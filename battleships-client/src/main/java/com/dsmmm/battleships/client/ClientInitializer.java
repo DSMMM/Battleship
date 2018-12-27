@@ -21,7 +21,8 @@ class ClientInitializer {
     ClientInitializer(String name) {
         this.name = name;
         try {
-            echoSocket = new Socket("vps624409.ovh.net", 8189);
+          //  echoSocket = new Socket("vps624409.ovh.net", 8189);
+            echoSocket = new Socket("localhost", 8189);
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));

@@ -9,10 +9,10 @@ import java.util.Map;
 class ThreeMastShip implements Ship {
     private Map<Coordinates, Mast> mapOfMasts;
 
-    ThreeMastShip(Coordinates c1, Coordinates c2, Coordinates c3) {
+    ThreeMastShip(Coordinates... c) {
+        assert c.length == 3;
         mapOfMasts = new HashMap<>();
-        mapOfMasts = putMastsToShip(mapOfMasts, c1, c2, c3);
-
+        mapOfMasts = putMastsToShip(mapOfMasts, c);
     }
 
     @Override
