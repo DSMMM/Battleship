@@ -1,7 +1,6 @@
 package com.dsmmm.battleships.client;
 
 
-import com.dsmmm.battleships.client.io.Prefix;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

@@ -1,8 +1,6 @@
 package com.dsmmm.battleships.server.board;
 
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class BoardTest {

@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public class Board {
     private final Dimension dimension;
-    private Map<Coordinates, Field> mapOfFields;
-    private Fleet fleet;
+    private final Map<Coordinates, Field> mapOfFields;
+    private final Fleet fleet;
 
     Board(Dimension dimension) {
         this.dimension = dimension;
@@ -27,7 +27,7 @@ public class Board {
     public String generateCodesOfShipCoordinates() {
         StringBuilder stringBuilder = new StringBuilder();
         for(Coordinates coordinates : fleet.getShipsCoordinates()) {
-            stringBuilder.append(coordinates + ",");
+            stringBuilder.append(coordinates).append(",");
         }
         return stringBuilder.toString();
     }

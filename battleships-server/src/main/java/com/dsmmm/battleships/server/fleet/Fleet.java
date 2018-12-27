@@ -8,10 +8,9 @@ public class Fleet{
 
     private final Set<Ship> ships = new HashSet<>();
     private final Shipyard shipyard = new Shipyard();
-    private Set<Coordinates> shipsCoordinates = new HashSet<>();
+    private final Set<Coordinates> shipsCoordinates = new HashSet<>();
 
     public Set<Coordinates> getShipsCoordinates() {
-        // return ships.stream().map(Ship::getMastsCoordinates).flatMap(Collection::stream).collect(Collectors.toSet());
         return shipsCoordinates;
     }
 
@@ -19,9 +18,9 @@ public class Fleet{
         ships.add(ship);
     }
 
-    void addShip(Coordinates... c) {
-        addShip(shipyard.createShip(c));
-        shipsCoordinates.addAll(Arrays.asList(c));
+    void addShip(Set<Coordinates> c) {
+        addShip(shipyard.createShip(c.toArray(new Coordinates[0])));
+        shipsCoordinates.addAll(c);
     }
 
     boolean takeShotOnFleet(Coordinates coordinates) {

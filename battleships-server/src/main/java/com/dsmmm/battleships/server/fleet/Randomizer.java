@@ -6,7 +6,6 @@ import com.dsmmm.battleships.server.board.Side;
 
 import java.util.*;
 
-
 public class Randomizer {
 
     private static final int NUMBER_OF_4_MAST_SHIPS = 1;
@@ -23,13 +22,17 @@ public class Randomizer {
         FLEET_QUANTITIES.put(3, NUMBER_OF_3_MAST_SHIPS);
         FLEET_QUANTITIES.put(2, NUMBER_OF_2_MAST_SHIPS);
         FLEET_QUANTITIES.put(1, NUMBER_OF_1_MAST_SHIPS);
-        this.possibleCoordinates = new HashSet<>();
-        for (int column = 1; column <= 10; column++) {
-            for (int row = 1; row <= 10; row++) {
-                possibleCoordinates.add(new Coordinates(column, row));
+        possibleCoordinates = populatePossibleCoordinates();
+    }
+
+    private Set<Coordinates> populatePossibleCoordinates() {
+        Set<Coordinates> coordinatesOnBoard = new HashSet<>();
+        for (int column = 1; dimension.greaterThanOrEqual(column); column++) {
+            for (int row = 1; dimension.greaterThanOrEqual(row); row++) {
+                coordinatesOnBoard.add(new Coordinates(column, row));
             }
         }
-
+        return coordinatesOnBoard;
     }
 
     public Fleet generateRandomFleet() {
@@ -39,40 +42,39 @@ public class Randomizer {
 
     private void generateShip(Integer masts, Integer shipsToGenerate) {
         for (int count = 1; count <= shipsToGenerate; count++) {
-            Set<Coordinates> generatedMastsCoordinates = randomizedMasts(masts);
-            fleet.addShip(generatedMastsCoordinates.toArray(new Coordinates[0]));
+            fleet.addShip(randomizedMasts(masts));
         }
     }
 
     private Set<Coordinates> randomizedMasts(int masts) {
-        Set<Coordinates> coordinatesToBuildShip = new HashSet<>();
+        Set<Coordinates> chosenCoordinates = new HashSet<>();
         Set<Coordinates> possibleCoordinatesForShip = new HashSet<>(this.possibleCoordinates);
-        Coordinates lastAddedMast = randomizedField(possibleCoordinatesForShip, possibleCoordinatesForShip);
-        coordinatesToBuildShip.add(lastAddedMast);
+        Coordinates lastAddedMast = randomizedField(possibleCoordinatesForShip);
+        possibleCoordinatesForShip.remove(lastAddedMast);
+        chosenCoordinates.add(lastAddedMast);
         for (int i = 1; i < masts; i++) {
             Set<Coordinates> possibles = allAdjacentFields(lastAddedMast, possibleCoordinatesForShip);
-            if(possibles.isEmpty()) {
+            if (possibles.isEmpty()) {
                 return randomizedMasts(masts);
             }
-            Coordinates nextMast = randomizedField(possibles, possibleCoordinatesForShip);
-            coordinatesToBuildShip.add(nextMast);
+            Coordinates nextMast = randomizedField(possibles);
+            possibleCoordinatesForShip.remove(nextMast);
+            chosenCoordinates.add(nextMast);
             lastAddedMast = nextMast;
         }
-        coordinatesToBuildShip.forEach(this::updatePossibleCoordinates);
-        return coordinatesToBuildShip;
+        chosenCoordinates.forEach(this::updatePossibleCoordinatesOnBoard);
+        return chosenCoordinates;
     }
 
-    private Coordinates randomizedField(Set<Coordinates> possibles, Set<Coordinates> possibleCoordinatesForShip) {
+    private Coordinates randomizedField(Set<Coordinates> possibles) {
         List<Coordinates> list = new ArrayList<>(possibles);
         Collections.shuffle(list);
-        Coordinates randomizedField = list.get(0);
-        possibleCoordinatesForShip.remove(randomizedField);
-        return randomizedField;
+        return list.get(0);
     }
 
-    private void updatePossibleCoordinates(Coordinates coordinates) {
-        possibleCoordinates.remove(coordinates);
-        possibleCoordinates.removeAll(getNeighbours(coordinates));
+    private void updatePossibleCoordinatesOnBoard(Coordinates coordinate) {
+        possibleCoordinates.remove(coordinate);
+        possibleCoordinates.removeAll(getNeighbours(coordinate));
     }
 
     private Set<Coordinates> allAdjacentFields(Coordinates coordinates, Set<Coordinates> possibleCoordinatesForShip) {
