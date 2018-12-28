@@ -8,20 +8,14 @@ import java.util.*;
 
 public class Randomizer {
 
-    private static final int NUMBER_OF_4_MAST_SHIPS = 1;
-    private static final int NUMBER_OF_3_MAST_SHIPS = 2;
-    private static final int NUMBER_OF_2_MAST_SHIPS = 3;
-    private static final int NUMBER_OF_1_MAST_SHIPS = 4;
-    private static final TreeMap<Integer, Integer> FLEET_QUANTITIES = new TreeMap<>();
+
     private final Fleet fleet = new Fleet();
     private final Set<Coordinates> possibleCoordinates;
     private final Dimension dimension = new Dimension();
+    private final FleetQuantities fleetQuantities = new FleetQuantities();
+
 
     public Randomizer() {
-        FLEET_QUANTITIES.put(4, NUMBER_OF_4_MAST_SHIPS);
-        FLEET_QUANTITIES.put(3, NUMBER_OF_3_MAST_SHIPS);
-        FLEET_QUANTITIES.put(2, NUMBER_OF_2_MAST_SHIPS);
-        FLEET_QUANTITIES.put(1, NUMBER_OF_1_MAST_SHIPS);
         possibleCoordinates = populatePossibleCoordinates();
     }
 
@@ -36,7 +30,7 @@ public class Randomizer {
     }
 
     public Fleet generateRandomFleet() {
-        FLEET_QUANTITIES.descendingMap().forEach(this::generateShip);
+        fleetQuantities.forEach(this::generateShip);
         return fleet;
     }
 
