@@ -12,11 +12,11 @@ interface Ship {
 
     boolean takeShotOnShip(Coordinates coordinates);
 
-    default Map<Coordinates, Mast> putMastsToShip(Map<Coordinates, Mast> givenMap, Coordinates... coordinates) {
+    default Map<Coordinates, Mast> putMastsToShip(Map<Coordinates, Mast> mapOfMasts, Coordinates... coordinates) {
         for (Coordinates c : coordinates) {
-            givenMap.put(c, new NotShotMast());
+            mapOfMasts.put(c, new NotShotMast());
         }
-        return givenMap;
+        return mapOfMasts;
     }
 
     default int countStandingMasts(Map<Coordinates, Mast> mapOfMasts) {

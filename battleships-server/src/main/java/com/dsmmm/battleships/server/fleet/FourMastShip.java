@@ -11,9 +11,10 @@ class FourMastShip implements Ship {
 
     private Map<Coordinates, Mast> mapOfMasts;
 
-    FourMastShip(Coordinates c1, Coordinates c2, Coordinates c3, Coordinates c4) {
+    FourMastShip(Coordinates... c) {
+        assert c.length == 4;
         mapOfMasts = new HashMap<>();
-        mapOfMasts = putMastsToShip(mapOfMasts, c1, c2, c3, c4);
+        mapOfMasts = putMastsToShip(mapOfMasts, c);
     }
 
     @Override

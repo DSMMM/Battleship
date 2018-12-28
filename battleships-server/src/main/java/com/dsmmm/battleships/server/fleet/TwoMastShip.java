@@ -10,10 +10,10 @@ class TwoMastShip implements Ship {
 
     private Map<Coordinates, Mast> mapOfMasts;
 
-    TwoMastShip(Coordinates c1, Coordinates c2) {
+    TwoMastShip(Coordinates... c) {
+        assert c.length == 2;
         mapOfMasts = new HashMap<>();
-        mapOfMasts = putMastsToShip(mapOfMasts, c1, c2);
-
+        mapOfMasts = putMastsToShip(mapOfMasts, c);
     }
 
     @Override

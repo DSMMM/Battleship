@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 public class Coordinates {
 
-    final Column column;
-    final Row row;
+    private final Column column;
+    private final Row row;
 
     public Coordinates(Column column, Row row) {
         this.column = column;

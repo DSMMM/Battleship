@@ -5,6 +5,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 @Test
 public class FleetTest {
 
@@ -23,9 +28,9 @@ public class FleetTest {
         Coordinates c2 = new Coordinates(1, 2);
         Coordinates c3 = new Coordinates(1, 3);
         Coordinates c4 = new Coordinates(1, 4);
-
+        Set<Coordinates> coordinates = new HashSet<>(Arrays.asList(c1, c2, c3, c4));
         //when
-        fleet.addShip(c1, c2, c3, c4);
+        fleet.addShip(coordinates);
 
         //then
         Assert.assertTrue(fleet.takeShotOnFleet(c1));
@@ -41,9 +46,10 @@ public class FleetTest {
         Coordinates c1 = new Coordinates(1, 1);
         Coordinates c2 = new Coordinates(1, 2);
         Coordinates c3 = new Coordinates(1, 3);
+        Set<Coordinates> coordinates = new HashSet<>(Arrays.asList(c1, c2, c3));
 
         //when
-        fleet.addShip(c1, c2, c3);
+        fleet.addShip(coordinates);
 
         //then
         Assert.assertTrue(fleet.takeShotOnFleet(c1));
@@ -57,9 +63,10 @@ public class FleetTest {
         //given
         Coordinates c1 = new Coordinates(1, 1);
         Coordinates c2 = new Coordinates(1, 2);
+        Set<Coordinates> coordinates = new HashSet<>(Arrays.asList(c1, c2));
 
         //when
-        fleet.addShip(c1, c2);
+        fleet.addShip(coordinates);
 
         //then
         Assert.assertTrue(fleet.takeShotOnFleet(c1));
@@ -71,9 +78,10 @@ public class FleetTest {
     public void add1MastShip() {
         //given
         Coordinates c1 = new Coordinates(1, 1);
+        Set<Coordinates> coordinates = new HashSet<>(Collections.singletonList(c1));
 
         //when
-        fleet.addShip(c1);
+        fleet.addShip(coordinates);
 
         //then
         Assert.assertTrue(fleet.takeShotOnFleet(c1));

@@ -1,7 +1,6 @@
 package com.dsmmm.battleships.client;
 
-
-import com.dsmmm.battleships.client.io.Prefix;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,25 +11,35 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+@SuppressWarnings("WeakerAccess")
 public class Controller implements Initializable {
+
     private static final double SIZE = 30.0d;
+
     private ClientInitializer client;
+
     @FXML
     private TextField nameId;
+
     @FXML
     private Button joinId;
+
     @FXML
     private TextArea chatId;
+
     @FXML
     private TextField inputChat;
+
     @FXML
     private Pane paneEnemy;
+
     @FXML
     private Button generateFleet;
+
     @FXML
     private Pane paneFleet;
 
@@ -90,17 +99,21 @@ public class Controller implements Initializable {
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= 10; j++) {
                 Button button = (Button) paneFleet.lookup("#" + i + "-" + j);
-                button.setStyle("-fx-opacity: 0.5 !important;");
+                button.setStyle("-fx-background-color: #3BB9FF; -fx-opacity: 1.0 !important;");
             }
         }
     }
 
     void showFleet(String toDecode) {
-        resetFleet();
+        Platform.runLater(this::resetFleet);
+        Platform.runLater(() -> reloadFleet(toDecode));
+    }
+
+    private void reloadFleet(String toDecode) {
         String[] lines = toDecode.split(",");
-        for (String s: lines) {
+        for (String s : lines) {
             Button button = (Button) paneFleet.lookup(s);
-            button.setStyle("-fx-opacity: 1.0 !important;");
+            button.setStyle("-fx-background-color: brown; -fx-opacity: 1.0 !important;");
         }
     }
 
