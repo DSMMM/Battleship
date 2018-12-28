@@ -7,7 +7,6 @@ import java.util.*;
 public class Fleet{
 
     private final Set<Ship> ships = new HashSet<>();
-    private final Shipyard shipyard = new Shipyard();
     private final Set<Coordinates> shipsCoordinates = new HashSet<>();
 
     public Set<Coordinates> getShipsCoordinates() {
@@ -19,7 +18,7 @@ public class Fleet{
     }
 
     void addShip(Set<Coordinates> c) {
-        addShip(shipyard.createShip(c.toArray(new Coordinates[0])));
+        addShip(Shipyard.createShip(c));
         shipsCoordinates.addAll(c);
     }
 

@@ -89,7 +89,7 @@ public class Controller implements Initializable {
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= 10; j++) {
                 Button button = (Button) paneFleet.lookup("#" + i + "-" + j);
-                button.setStyle("-fx-opacity: 0.5 !important;");
+                button.setStyle("-fx-background-color: lightblue; -fx-opacity: 1.0 !important;");
             }
         }
     }
@@ -99,7 +99,7 @@ public class Controller implements Initializable {
         String[] lines = toDecode.split(",");
         for (String s: lines) {
             Button button = (Button) paneFleet.lookup(s);
-            button.setStyle("-fx-opacity: 1.0 !important;");
+            button.setStyle("-fx-background-color: yellow; -fx-opacity: 1.0 !important;");
         }
     }
 

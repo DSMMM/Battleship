@@ -2,18 +2,25 @@ package com.dsmmm.battleships.server.fleet;
 
 import com.dsmmm.battleships.server.board.Coordinates;
 
+import java.util.Set;
+
 class Shipyard {
 
-    Ship createShip(Coordinates... c) {
-        switch (c.length) {
+    private Shipyard(){
+        //empty hidden constructor
+    }
+
+    static Ship createShip(Set<Coordinates> coordinatesSet) {
+        Coordinates[] coordinatesArray = coordinatesSet.toArray(new Coordinates[0]);
+        switch (coordinatesArray.length) {
             case 4:
-                return new FourMastShip(c);
+                return new FourMastShip(coordinatesArray);
             case 3:
-                return new ThreeMastShip(c);
+                return new ThreeMastShip(coordinatesArray);
             case 2:
-                return new TwoMastShip(c);
+                return new TwoMastShip(coordinatesArray);
             default:
-                return new OneMastShip(c[0]);
+                return new OneMastShip(coordinatesArray[0]);
         }
     }
 

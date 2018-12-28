@@ -42,11 +42,11 @@ public class Randomizer {
 
     private void generateShip(Integer masts, Integer shipsToGenerate) {
         for (int count = 1; count <= shipsToGenerate; count++) {
-            fleet.addShip(randomizedMasts(masts));
+            fleet.addShip(prepareRandomizedShip(masts));
         }
     }
 
-    private Set<Coordinates> randomizedMasts(int masts) {
+    private Set<Coordinates> prepareRandomizedShip(int masts) {
         Set<Coordinates> chosenCoordinates = new HashSet<>();
         Set<Coordinates> possibleCoordinatesForShip = new HashSet<>(this.possibleCoordinates);
         Coordinates lastAddedMast = randomizedField(possibleCoordinatesForShip);
@@ -55,7 +55,7 @@ public class Randomizer {
         for (int i = 1; i < masts; i++) {
             Set<Coordinates> possibles = allAdjacentFields(lastAddedMast, possibleCoordinatesForShip);
             if (possibles.isEmpty()) {
-                return randomizedMasts(masts);
+                return prepareRandomizedShip(masts);
             }
             Coordinates nextMast = randomizedField(possibles);
             possibleCoordinatesForShip.remove(nextMast);
