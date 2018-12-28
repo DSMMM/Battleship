@@ -1,8 +1,6 @@
 package com.dsmmm.battleships.client;
 
-
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,25 +11,35 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+@SuppressWarnings("WeakerAccess")
 public class Controller implements Initializable {
+
     private static final double SIZE = 30.0d;
+
     private ClientInitializer client;
+
     @FXML
     private TextField nameId;
+
     @FXML
     private Button joinId;
+
     @FXML
     private TextArea chatId;
+
     @FXML
     private TextField inputChat;
+
     @FXML
     private Pane paneEnemy;
+
     @FXML
     private Button generateFleet;
+
     @FXML
     private Pane paneFleet;
 

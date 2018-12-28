@@ -9,10 +9,6 @@ import java.util.function.BiConsumer;
 class FleetQuantities implements Iterable<Map.Entry<Integer, Integer>> {
 
     private final TreeMap<Integer, Integer> fleetQuantitiesMap;
-    private final int numberOf4MastShips = 1;
-    private final int numberOf3MastShips = 2;
-    private final int numberOf2MastShips = 3;
-    private final int numberOf1MastShips = 4;
     private static final int FOUR_MAST_SHIP = 4;
     private static final int THREE_MAST_SHIP = 3;
     private static final int TWO_MAST_SHIP = 2;
@@ -27,9 +23,13 @@ class FleetQuantities implements Iterable<Map.Entry<Integer, Integer>> {
     private TreeMap<Integer, Integer> fillMap() {
         TreeMap<Integer, Integer> fleetQuantitiesMapTemp;
         fleetQuantitiesMapTemp = new TreeMap<>();
+        int numberOf4MastShips = 1;
         fleetQuantitiesMapTemp.put(FOUR_MAST_SHIP, numberOf4MastShips);
+        int numberOf3MastShips = 2;
         fleetQuantitiesMapTemp.put(THREE_MAST_SHIP, numberOf3MastShips);
+        int numberOf2MastShips = 3;
         fleetQuantitiesMapTemp.put(TWO_MAST_SHIP, numberOf2MastShips);
+        int numberOf1MastShips = 4;
         fleetQuantitiesMapTemp.put(ONE_MAST_SHIP, numberOf1MastShips);
         return fleetQuantitiesMapTemp;
     }
