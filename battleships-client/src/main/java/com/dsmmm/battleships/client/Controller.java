@@ -1,7 +1,8 @@
 package com.dsmmm.battleships.client;
 
 
-import com.dsmmm.battleships.client.io.Prefix;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -90,17 +91,21 @@ public class Controller implements Initializable {
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= 10; j++) {
                 Button button = (Button) paneFleet.lookup("#" + i + "-" + j);
-                button.setStyle("-fx-opacity: 0.5 !important;");
+                button.setStyle("-fx-background-color: #3BB9FF; -fx-opacity: 1.0 !important;");
             }
         }
     }
 
     void showFleet(String toDecode) {
-        resetFleet();
+        Platform.runLater(this::resetFleet);
+        Platform.runLater(() -> reloadFleet(toDecode));
+    }
+
+    private void reloadFleet(String toDecode) {
         String[] lines = toDecode.split(",");
-        for (String s: lines) {
+        for (String s : lines) {
             Button button = (Button) paneFleet.lookup(s);
-            button.setStyle("-fx-opacity: 1.0 !important;");
+            button.setStyle("-fx-background-color: brown; -fx-opacity: 1.0 !important;");
         }
     }
 
