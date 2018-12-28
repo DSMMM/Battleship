@@ -5,27 +5,39 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
 
+
 class FleetQuantities implements Iterable<Map.Entry<Integer, Integer>> {
 
-    private static final TreeMap<Integer, Integer> FLEET_QUANTITIES = new TreeMap<>();
-    private static final int NUMBER_OF_4_MAST_SHIPS = 1;
-    private static final int NUMBER_OF_3_MAST_SHIPS = 2;
-    private static final int NUMBER_OF_2_MAST_SHIPS = 3;
-    private static final int NUMBER_OF_1_MAST_SHIPS = 4;
+    private final TreeMap<Integer, Integer> fleetQuantitiesMap;
+    private final int numberOf4MastShips = 1;
+    private final int numberOf3MastShips = 2;
+    private final int numberOf2MastShips = 3;
+    private final int numberOf1MastShips = 4;
+    private static final int FOUR_MAST_SHIP = 4;
+    private static final int THREE_MAST_SHIP = 3;
+    private static final int TWO_MAST_SHIP = 2;
+    private static final int ONE_MAST_SHIP = 1;
 
 
     FleetQuantities() {
-        FLEET_QUANTITIES.put(4, NUMBER_OF_4_MAST_SHIPS);
-        FLEET_QUANTITIES.put(3, NUMBER_OF_3_MAST_SHIPS);
-        FLEET_QUANTITIES.put(2, NUMBER_OF_2_MAST_SHIPS);
-        FLEET_QUANTITIES.put(1, NUMBER_OF_1_MAST_SHIPS);
+        fleetQuantitiesMap = fillMap();
 
+    }
+
+    private TreeMap<Integer, Integer> fillMap() {
+        TreeMap<Integer, Integer> fleetQuantitiesMapTemp;
+        fleetQuantitiesMapTemp = new TreeMap<>();
+        fleetQuantitiesMapTemp.put(FOUR_MAST_SHIP, numberOf4MastShips);
+        fleetQuantitiesMapTemp.put(THREE_MAST_SHIP, numberOf3MastShips);
+        fleetQuantitiesMapTemp.put(TWO_MAST_SHIP, numberOf2MastShips);
+        fleetQuantitiesMapTemp.put(ONE_MAST_SHIP, numberOf1MastShips);
+        return fleetQuantitiesMapTemp;
     }
 
 
     @Override
     public Iterator<Map.Entry<Integer, Integer>> iterator() {
-        return FLEET_QUANTITIES.descendingMap().entrySet().iterator();
+        return fleetQuantitiesMap.descendingMap().entrySet().iterator();
     }
 
 
