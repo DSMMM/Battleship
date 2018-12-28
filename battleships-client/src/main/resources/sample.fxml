@@ -9,13 +9,13 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dsmmm.battleships.client.Controller">
 
     <Pane fx:id="paneEnemy" layoutX="40.0" layoutY="35.0" prefHeight="300.0" prefWidth="300.0"
-          style="-fx-background-color: black;">
+          style="-fx-background-color: #3BB9FF;">
         <children></children>
     </Pane>
 
 
     <Pane fx:id="paneFleet" layoutX="411.0" layoutY="35.0" prefHeight="300.0" prefWidth="300.0"
-          style="-fx-background-color: black;">
+          style="-fx-background-color: #3BB9FF;">
         <children></children>
     </Pane>
 
