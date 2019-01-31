@@ -51,7 +51,7 @@ public class Controller implements Initializable {
     @FXML
     void join() {
         client = new ClientInitializer(nameId.getText());
-        client.listenToServer(chatId, this);
+        client.makeListenerThread(chatId, this);
         joinId.setDisable(true);
         nameId.setDisable(true);
         enableBoard(paneEnemy);

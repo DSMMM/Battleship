@@ -23,7 +23,7 @@ public class ChatFX extends Application {
             return;
         }
         Parent root = FXMLLoader.load(resource);
-        primaryStage.setTitle("ChatDemo");
+        primaryStage.setTitle("Battleships: the Game");
         Scene scene = new Scene(root, 747, 613);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

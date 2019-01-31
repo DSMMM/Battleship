@@ -14,15 +14,15 @@ class ClientInitializer {
 
     private final String name;
     private PrintWriter out;
-    private BufferedReader in;
+    private BufferedReader bufferedReader;
 
     ClientInitializer(String name) {
         this.name = name;
         try {
-        Socket echoSocket = new Socket("vps624409.ovh.net", 8189);
+        Socket echoSocket = new Socket("localhost", 8189);
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
             out = new PrintWriter(echoSocket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+            bufferedReader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         } catch (IOException e) {
             Printer.print(e.getMessage());
         }
@@ -33,39 +33,15 @@ class ClientInitializer {
     }
 
     void requestGenerateFleet() {
-        out.println(Prefix.GENERATE.toString());
+        out.println(Prefix.GENERATE);
     }
 
     void sendCoordinates(int x, int y) {
         out.println(Prefix.SHOOT.cipher(x + " " + y));
     }
 
-    void listenToServer(TextArea chatId, Controller controller) {
-        Thread t = new Thread(() -> {
-            try {
-                String line;
-                while ((line = in.readLine()) != null) {
-                    Prefix type = Prefix.getType(line);
-                    String decipheredLine = Prefix.decipher(line);
-                    switch (type) {
-                        case CHAT:
-                            chatId.appendText(decipheredLine + "\n");
-                            break;
-                        case HIT:
-                            Printer.print(line);
-                            break;
-                        case SHIPS:
-                            controller.showFleet(decipheredLine);
-                            break;
-                        default:
-                            Printer.print(line);
-                            break;
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+    void makeListenerThread(TextArea chatId, Controller controller) {
+        Thread t = new Thread(new ServerListener(chatId, controller, bufferedReader), "server listener");
         t.start();
     }
 }

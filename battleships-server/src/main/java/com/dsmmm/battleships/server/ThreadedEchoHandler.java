@@ -38,7 +38,7 @@ class ThreadedEchoHandler implements Runnable {
                 messenger.redirectMessage(homeOut, awayOut, line);
             }
 
-            messenger.sendToBothPlayersChat("Your friend [has] left [the] chat! Status: disconnected");
+            messenger.sendToBothPlayersChat("Your friend has left the chat! Status: disconnected");
             Printer.print("Chat disconnected");
 
         } catch (IOException e) {

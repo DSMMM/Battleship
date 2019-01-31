@@ -12,16 +12,24 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 class ServerInitializer {
+
+    private final ClientThreadsFactory factory;
+
+    ServerInitializer() {
+        factory = new ClientThreadsFactory();
+    }
+
     @SuppressWarnings("InfiniteLoopStatement")
     void initializeServer() {
         try (ServerSocket serverSocket = new ServerSocket(8189)) {
+            if(serverSocket.isBound())
+                Printer.print("Server initialized.");
             while (true) {
                 Socket host = createSocketForHost(serverSocket);
-
                 Socket guest = createSocketForGuest(serverSocket);
 
-                initializeChatThread(host, guest);
-                initializeChatThread(guest, host);
+                initializeClientThread(host, guest);
+                initializeClientThread(guest, host);
             }
         } catch (IOException e) {
             Printer.print(e.getMessage());
@@ -46,9 +54,8 @@ class ServerInitializer {
         return host;
     }
 
-    private void initializeChatThread(Socket home, Socket away) {
-        Runnable r = new ThreadedEchoHandler(home, away);
-        Thread t = new Thread(r);
+    private void initializeClientThread(Socket home, Socket away) {
+        Thread t = factory.newThread(new ThreadedEchoHandler(home, away));
         t.start();
     }
 }
