@@ -14,19 +14,21 @@ class ThreadedEchoHandler implements Runnable {
     private final Socket home;
     private final Socket away;
 
+    private Printer printer = new Printer(this.getClass());
+
+
     ThreadedEchoHandler(Socket home, Socket away) {
         this.home = home;
         this.away = away;
     }
-
+    @Override
     public void run() {
         try (
             InputStream homeInputStream = home.getInputStream();
             OutputStream homeOutputStream = home.getOutputStream();
-            OutputStream awayOutputStream = away.getOutputStream()
-        ) {
-            Scanner scanner = new Scanner(homeInputStream, String.valueOf(CHAT_CHARSET));
+            OutputStream awayOutputStream = away.getOutputStream()) {
 
+            Scanner scanner = new Scanner(homeInputStream, String.valueOf(CHAT_CHARSET));
             PrintWriter homeOut = getPrintWriter(homeOutputStream);
             PrintWriter awayOut = getPrintWriter(awayOutputStream);
 
@@ -37,10 +39,10 @@ class ThreadedEchoHandler implements Runnable {
                 messenger.redirectMessage(homeOut, awayOut, line);
             }
             messenger.sendToBothPlayersChat("Your friend has left the chat! Status: disconnected");
-            Printer.print("Chat disconnected");
+            printer.printInfo("Chat disconnected");
         } catch (IOException e) {
             //HINT: true error handling might be more useful ;-) //TODO
-            Printer.print(e.getMessage());
+            printer.printInfo(e.getMessage());
         }
     }
 

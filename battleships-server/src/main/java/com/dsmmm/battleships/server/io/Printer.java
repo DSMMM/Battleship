@@ -1,11 +1,23 @@
 package com.dsmmm.battleships.server.io;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Printer {
 
-    private Printer() {
+    private Logger log;
+
+    public Printer(Class clazz) {
+        log = LogManager.getLogger(clazz);
     }
 
-    public static void print(String message) {
-        System.out.println(message);
+    public void printInfo(String message) {
+        log.info(message);
     }
+
+    public void printError(String message) {
+        log.error(message);
+    }
+
+
 }

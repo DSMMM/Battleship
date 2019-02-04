@@ -10,12 +10,14 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 class ServerInitializer {
 
     private final ExecutorService threadPool;
+    private Printer printer = new Printer(this.getClass());
 
     ServerInitializer() {
         threadPool = Executors.newFixedThreadPool(2, new ClientThreadsFactory());
@@ -25,33 +27,36 @@ class ServerInitializer {
     void initializeServer() {
         try (ServerSocket serverSocket = new ServerSocket(8189)) {
             if (serverSocket.isBound())
-                Printer.print("Server initialized.");
+                printer.printInfo("Server initialized.");
+
             while (true) {
                 Socket host = createSocketForHost(serverSocket);
                 Socket guest = createSocketForGuest(serverSocket);
+
+                printer.printInfo("Połączono: " + host.getRemoteSocketAddress() + " i " + guest.getRemoteSocketAddress());
 
                 initializeClientThread(host, guest);
                 initializeClientThread(guest, host);
             }
         } catch (IOException e) {
-            Printer.print(e.getMessage());
+            printer.printError(e.getMessage());
         }
 
     }
 
     private Socket createSocketForGuest(ServerSocket serverSocket) throws IOException {
         Socket guest = serverSocket.accept();
-        Printer.print("Two users connected. Chatroom initialized.");
+        printer.printInfo("Two users connected. Chatroom initialized.");
         return guest;
     }
 
     private Socket createSocketForHost(ServerSocket serverSocket) throws IOException {
         Socket host = serverSocket.accept();
-        Printer.print("First user has joined.");
+        printer.printInfo("First user has joined.");
 
         OutputStream outStreamHost = host.getOutputStream();
         PrintWriter outHost = new PrintWriter(
-            new OutputStreamWriter(outStreamHost, StandardCharsets.UTF_8), true);
+                new OutputStreamWriter(outStreamHost, StandardCharsets.UTF_8), true);
         Messenger.sendMessage(outHost, "Connection established. Please wait for second user.");
         return host;
     }
