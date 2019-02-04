@@ -1,6 +1,7 @@
 package com.dsmmm.battleships.client;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,9 +11,16 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ChatFX extends Application {
+    private static Thread serverListener;
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    static void setServerListener(Thread threadToListen) {
+        if (serverListener == null) {
+            serverListener = threadToListen;
+        }
     }
 
     @Override
@@ -27,7 +35,13 @@ public class ChatFX extends Application {
         Scene scene = new Scene(root, 747, 613);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setOnCloseRequest(event -> System.exit(0));
+        primaryStage.setOnCloseRequest(event -> {
+            Platform.exit();
+            //TODO: to nie do końca działa ;) trzeba zamknąć połączenie z serwerem.
+            if (serverListener != null) {
+                serverListener.interrupt();
+            }
+        });
         primaryStage.show();
     }
 }

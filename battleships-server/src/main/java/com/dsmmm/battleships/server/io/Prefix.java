@@ -16,15 +16,6 @@ enum Prefix {
         this.key = key;
     }
 
-    @Override
-    public String toString() {
-        return key;
-    }
-
-    String cipher(String toCipher) {
-        return key + " " + toCipher;
-    }
-
     static String decipher(String toDecipher) {
         Prefix prefix = getType(toDecipher);
         return toDecipher.substring(prefix.toString().length() + 1);
@@ -37,5 +28,14 @@ enum Prefix {
             }
         }
         throw new MessageTypeException(message);
+    }
+
+    @Override
+    public String toString() {
+        return key;
+    }
+
+    String cipher(String toCipher) {
+        return key + " " + toCipher;
     }
 }

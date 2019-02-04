@@ -10,19 +10,21 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 class ServerInitializer {
 
-    private final ClientThreadsFactory factory;
+    private final ExecutorService threadPool;
 
     ServerInitializer() {
-        factory = new ClientThreadsFactory();
+        threadPool = Executors.newFixedThreadPool(2, new ClientThreadsFactory());
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
     void initializeServer() {
         try (ServerSocket serverSocket = new ServerSocket(8189)) {
-            if(serverSocket.isBound())
+            if (serverSocket.isBound())
                 Printer.print("Server initialized.");
             while (true) {
                 Socket host = createSocketForHost(serverSocket);
@@ -49,13 +51,12 @@ class ServerInitializer {
 
         OutputStream outStreamHost = host.getOutputStream();
         PrintWriter outHost = new PrintWriter(
-                new OutputStreamWriter(outStreamHost, StandardCharsets.UTF_8), true);
+            new OutputStreamWriter(outStreamHost, StandardCharsets.UTF_8), true);
         Messenger.sendMessage(outHost, "Connection established. Please wait for second user.");
         return host;
     }
 
     private void initializeClientThread(Socket home, Socket away) {
-        Thread t = factory.newThread(new ThreadedEchoHandler(home, away));
-        t.start();
+        threadPool.submit(new ThreadedEchoHandler(home, away));
     }
 }

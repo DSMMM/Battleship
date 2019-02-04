@@ -6,7 +6,7 @@ import java.util.Set;
 
 class Shipyard {
 
-    private Shipyard(){
+    private Shipyard() {
         //empty hidden constructor
     }
 

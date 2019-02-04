@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -51,6 +52,14 @@ public class Controller implements Initializable {
     @FXML
     void join() {
         client = new ClientInitializer(nameId.getText());
+        if (client.connectWithServer()) {
+            proceedConnection();
+        } else {
+            chatId.appendText("Nie udało się nawiązać połączenia z serwerem.\n");
+        }
+    }
+
+    private void proceedConnection() {
         client.makeListenerThread(chatId, this);
         joinId.setDisable(true);
         nameId.setDisable(true);

@@ -9,7 +9,7 @@ import java.io.IOException;
 class ServerListener implements Runnable {
     private final TextArea chatId;
     private final Controller controller;
-    private BufferedReader bufferedReader;
+    private final BufferedReader bufferedReader;
 
     ServerListener(TextArea chatId, Controller controller, BufferedReader bufferedReader) {
         this.chatId = chatId;
@@ -19,9 +19,11 @@ class ServerListener implements Runnable {
 
     @Override
     public void run() {
+        synchronized (this) {
             try {
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
+                    wait(10);
                     Prefix type = Prefix.getType(line);
                     String decipheredLine = Prefix.decipher(line);
                     switch (type) {
@@ -40,7 +42,13 @@ class ServerListener implements Runnable {
                     }
                 }
             } catch (IOException e) {
+                System.out.println("uuuu");
                 e.printStackTrace();
+            } catch (InterruptedException e) {
+                //TODO: do poprawy
+                Thread.currentThread().interrupt();
+                System.out.println("Zatrzymano wątek " + Thread.currentThread().getName());
             }
+        }
     }
 }

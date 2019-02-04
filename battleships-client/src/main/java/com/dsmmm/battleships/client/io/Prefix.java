@@ -16,22 +16,9 @@ public enum Prefix {
         this.key = key;
     }
 
-    @Override
-    public String toString() {
-        return key;
-    }
-
-    /**
-     * Add prefix to message
-     * @param toCipher String
-     * @return String ciphered message
-     */
-    public String cipher(String toCipher) {
-        return key + " " + toCipher;
-    }
-
     /**
      * Extracts message from ciphered message
+     *
      * @param toDecipher String
      * @return String message
      */
@@ -40,9 +27,9 @@ public enum Prefix {
         return toDecipher.substring(prefix.toString().length() + 1);
     }
 
-
     /**
      * Get type of ciphered message. Throws exception if can't find used type
+     *
      * @param message String
      * @return Prefix type
      */
@@ -53,5 +40,20 @@ public enum Prefix {
             }
         }
         throw new MessageTypeException(message);
+    }
+
+    @Override
+    public String toString() {
+        return key;
+    }
+
+    /**
+     * Add prefix to message
+     *
+     * @param toCipher String
+     * @return String ciphered message
+     */
+    public String cipher(String toCipher) {
+        return key + " " + toCipher;
     }
 }

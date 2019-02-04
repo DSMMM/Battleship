@@ -2,9 +2,10 @@ package com.dsmmm.battleships.server.fleet;
 
 import com.dsmmm.battleships.server.board.Coordinates;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Fleet{
+public class Fleet {
 
     private final Set<Ship> ships = new HashSet<>();
     private final Set<Coordinates> shipsCoordinates = new HashSet<>();

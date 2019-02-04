@@ -16,12 +16,12 @@ public class Messenger {
         this.awayOut = awayOut;
     }
 
-    public void sendToFirstPlayerChat(String message) {
-        homeOut.println(Prefix.CHAT.cipher(message));
+    public static void sendMessage(PrintWriter out, String message) {
+        out.println(Prefix.CHAT.cipher(message));
     }
 
-    public static void sendMessage(PrintWriter out,String message){
-        out.println(Prefix.CHAT.cipher(message));
+    public void sendToFirstPlayerChat(String message) {
+        homeOut.println(Prefix.CHAT.cipher(message));
     }
 
     public void sendToBothPlayersChat(String message) {

@@ -10,9 +10,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 class ThreadedEchoHandler implements Runnable {
+    private static final Charset CHAT_CHARSET = StandardCharsets.UTF_8;
     private final Socket home;
     private final Socket away;
-    private static final Charset CHAT_CHARSET = StandardCharsets.UTF_8;
 
     ThreadedEchoHandler(Socket home, Socket away) {
         this.home = home;
@@ -32,20 +32,18 @@ class ThreadedEchoHandler implements Runnable {
 
             Messenger messenger = new Messenger(homeOut, awayOut);
             messenger.sendToFirstPlayerChat("Chat opened.");
-
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 messenger.redirectMessage(homeOut, awayOut, line);
             }
-
             messenger.sendToBothPlayersChat("Your friend has left the chat! Status: disconnected");
             Printer.print("Chat disconnected");
-
         } catch (IOException e) {
             //HINT: true error handling might be more useful ;-) //TODO
             Printer.print(e.getMessage());
         }
     }
+
 
     private PrintWriter getPrintWriter(OutputStream outputStream) {
         return new PrintWriter(

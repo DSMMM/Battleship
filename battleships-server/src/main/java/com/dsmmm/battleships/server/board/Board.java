@@ -24,22 +24,22 @@ public class Board {
         floodWithWater();
     }
 
+    public Board() {
+        this(new Dimension());
+    }
+
     public String generateCodesOfShipCoordinates() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Coordinates coordinates : fleet.getShipsCoordinates()) {
+        for (Coordinates coordinates : fleet.getShipsCoordinates()) {
             stringBuilder.append(coordinates).append(",");
         }
         return stringBuilder.toString();
     }
 
     private void placeShips() {
-        for(Coordinates coordinates:fleet.getShipsCoordinates()) {
+        for (Coordinates coordinates : fleet.getShipsCoordinates()) {
             mapOfFields.put(coordinates, new NotShotMast());
         }
-    }
-
-    public Board() {
-        this(new Dimension());
     }
 
     Field getField(Coordinates coordinates) {

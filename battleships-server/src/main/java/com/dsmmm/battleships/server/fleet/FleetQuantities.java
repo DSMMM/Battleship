@@ -8,11 +8,11 @@ import java.util.function.BiConsumer;
 
 class FleetQuantities implements Iterable<Map.Entry<Integer, Integer>> {
 
-    private final TreeMap<Integer, Integer> fleetQuantitiesMap;
     private static final int FOUR_MAST_SHIP = 4;
     private static final int THREE_MAST_SHIP = 3;
     private static final int TWO_MAST_SHIP = 2;
     private static final int ONE_MAST_SHIP = 1;
+    private final TreeMap<Integer, Integer> fleetQuantitiesMap;
 
 
     FleetQuantities() {

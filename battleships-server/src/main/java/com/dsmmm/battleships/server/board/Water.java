@@ -6,6 +6,7 @@ package com.dsmmm.battleships.server.board;
 public interface Water extends Field {
     /**
      * Transform this field to shot type
+     *
      * @return ShotWater
      */
     Water destroy();
