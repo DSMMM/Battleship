@@ -118,6 +118,12 @@ public class Controller implements Initializable {
         Platform.runLater(() -> reloadFleet(toDecode));
     }
 
+    void showEnemyShot(String toDecode) {
+        String codeButton = "#" + toDecode;
+        Button button = (Button) paneFleet.lookup(codeButton);
+        button.setStyle("-fx-background-color: black; -fx-opacity: 1.0 !important;");
+    }
+
     private void reloadFleet(String toDecode) {
         String[] lines = toDecode.split(",");
         for (String s : lines) {
@@ -133,7 +139,7 @@ public class Controller implements Initializable {
 
     private EventHandler<ActionEvent> onFieldClickEvent(int high, int width, Button button) {
         return (ActionEvent event) -> {
-            client.sendCoordinates(width, high);
+            client.sendCoordinates(high, width);
             button.setStyle("-fx-background-color: black;");
         };
     }

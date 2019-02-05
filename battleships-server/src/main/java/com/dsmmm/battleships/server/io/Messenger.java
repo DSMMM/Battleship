@@ -40,6 +40,7 @@ public class Messenger {
                 break;
             case SHOOT:
                 printer.printInfo(line);
+                awayOut.println(line);
                 break;
             case GENERATE:
                 homeOut.println(Prefix.SHIPS.cipher(new Board().generateCodesOfShipCoordinates()));

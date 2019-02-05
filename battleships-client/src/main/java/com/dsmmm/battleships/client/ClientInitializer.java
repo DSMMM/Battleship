@@ -22,7 +22,7 @@ class ClientInitializer {
 
     boolean connectWithServer() {
         try {
-            Socket echoSocket = new Socket("vps645601.ovh.net", 8189);
+            Socket echoSocket = new Socket("localhost", 8189);
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             bufferedReader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
@@ -42,7 +42,7 @@ class ClientInitializer {
     }
 
     void sendCoordinates(int x, int y) {
-        out.println(Prefix.SHOOT.cipher(x + " " + y));
+        out.println(Prefix.SHOOT.cipher(x + "-" + y));
     }
 
     void makeListenerThread(TextArea chatId, Controller controller) {

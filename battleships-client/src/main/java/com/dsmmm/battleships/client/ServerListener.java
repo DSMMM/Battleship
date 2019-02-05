@@ -30,8 +30,9 @@ class ServerListener implements Runnable {
                         case CHAT:
                             chatId.appendText(decipheredLine + "\n");
                             break;
-                        case HIT:
+                        case SHOOT:
                             Printer.print(line);
+                            controller.marcinekPomalujPrzycisk(decipheredLine);
                             break;
                         case SHIPS:
                             controller.showFleet(decipheredLine);
