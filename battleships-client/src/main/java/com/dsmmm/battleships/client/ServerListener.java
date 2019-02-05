@@ -42,12 +42,11 @@ class ServerListener implements Runnable {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("uuuu");
-                e.printStackTrace();
+                Printer.print("Problem z połączeniem.");
             } catch (InterruptedException e) {
                 //TODO: do poprawy
                 Thread.currentThread().interrupt();
-                System.out.println("Zatrzymano wątek " + Thread.currentThread().getName());
+                Printer.print("Zatrzymano wątek " + Thread.currentThread().getName());
             }
         }
     }

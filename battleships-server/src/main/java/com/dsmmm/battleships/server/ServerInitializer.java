@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,7 +19,7 @@ class ServerInitializer {
     private Printer printer = new Printer(this.getClass());
 
     ServerInitializer() {
-        threadPool = Executors.newFixedThreadPool(2, new ClientThreadsFactory());
+        threadPool = Executors.newFixedThreadPool(10, new ClientThreadsFactory());
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
