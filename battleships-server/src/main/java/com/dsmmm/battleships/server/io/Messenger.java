@@ -1,6 +1,7 @@
 package com.dsmmm.battleships.server.io;
 
-import com.dsmmm.battleships.server.board.Board;
+
+import com.dsmmm.battleships.server.game.Game;
 
 import java.io.PrintWriter;
 
@@ -11,10 +12,12 @@ public class Messenger {
     private final PrintWriter homeOut;
     private final PrintWriter awayOut;
     private final Printer printer = new Printer(this.getClass());
+    private final Game game;
 
     public Messenger(PrintWriter homeOut, PrintWriter awayOut) {
         this.homeOut = homeOut;
         this.awayOut = awayOut;
+        game = new Game();
     }
 
     public static void sendMessage(PrintWriter out, String message) {
@@ -40,11 +43,11 @@ public class Messenger {
                 break;
             case SHOOT:
                 printer.printInfo(line);
-                awayOut.println(line);
+                awayOut.println(Prefix.MISS.cipher(Prefix.decipher(line)));
                 break;
             case GENERATE:
                 printer.printInfo("Fleet generated for user: " + Thread.currentThread().getName());
-                homeOut.println(Prefix.SHIPS.cipher(new Board().generateCodesOfShipCoordinates()));
+                homeOut.println(Prefix.SHIPS.cipher(game.generateCodesOfShipCoordinates()));
                 break;
             default:
                 printer.printInfo(line);

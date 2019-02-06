@@ -6,4 +6,13 @@ class ConsoleController implements Gameable {
     public void showFleet(String toDecode) {
         Printer.print(Thread.currentThread().getName() + ": " + toDecode);
     }
+
+    @Override
+    public void showEnemyHit(String toDecode) {
+
+    }
+    @Override
+    public void showEnemyMiss(String toDecode) {
+
+    }
 }

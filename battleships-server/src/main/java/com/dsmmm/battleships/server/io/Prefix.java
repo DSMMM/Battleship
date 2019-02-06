@@ -8,7 +8,7 @@ enum Prefix {
     SHOOT("/shoot"),
     SHIPS("/ships"),
     HIT("/hit"),
-    GENERATE("/generate");
+    GENERATE("/generate"), MISS("/miss");
 
     private final String key;
 

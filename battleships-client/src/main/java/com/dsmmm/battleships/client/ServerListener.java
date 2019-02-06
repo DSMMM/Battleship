@@ -31,9 +31,13 @@ class ServerListener extends Thread {
                         case CHAT:
                             chat.appendText(decipheredLine + "\n");
                             break;
-                        case SHOOT:
+                        case MISS:
                             Printer.print(line);
-                            controller.showEnemyShot(decipheredLine);
+                            controller.showEnemyMiss(decipheredLine);
+                            break;
+                        case HIT:
+                            Printer.print(line);
+                            controller.showEnemyHit(decipheredLine);
                             break;
                         case SHIPS:
                             controller.showFleet(decipheredLine);

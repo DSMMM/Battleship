@@ -9,7 +9,7 @@ public enum Prefix {
     SHIPS("/ships"),
     HIT("/hit"),
     GENERATE("/generate"),
-    EXIT("/exit");
+    EXIT("/exit"), MISS("/miss");
 
     private final String key;
 

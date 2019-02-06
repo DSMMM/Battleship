@@ -120,10 +120,18 @@ public class Controller implements Initializable, Gameable {
         Platform.runLater(() -> reloadFleet(toDecode));
     }
 
-    void showEnemyShot(String toDecode) {
+    @Override
+    public void showEnemyMiss(String toDecode) {
         String codeButton = "#" + toDecode;
         Button button = (Button) paneFleet.lookup(codeButton);
-        button.setStyle("-fx-background-color: black; -fx-opacity: 1.0 !important;");
+        button.setStyle("-fx-background-color: blue; -fx-opacity: 1.0 !important;");
+    }
+
+    @Override
+    public void showEnemyHit(String toDecode) {
+        String codeButton = "#" + toDecode;
+        Button button = (Button) paneFleet.lookup(codeButton);
+        button.setStyle("-fx-background-color: yellow; -fx-opacity: 1.0 !important;");
     }
 
     private void reloadFleet(String toDecode) {

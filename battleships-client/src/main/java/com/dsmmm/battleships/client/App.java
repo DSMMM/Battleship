@@ -9,6 +9,4 @@ class App {
             ChatFX.main(args);
         }
     }
-
-
 }
