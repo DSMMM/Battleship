@@ -7,9 +7,13 @@ public enum Prefix {
     CHAT("/chat"),
     SHOOT("/shoot"),
     SHIPS("/ships"),
-    HIT("/hit"),
     GENERATE("/generate"),
-    EXIT("/exit"), MISS("/miss");
+    HIT("/hit"),
+    ENEMY_HIT("/enemy_hit"),
+    MISS("/miss"),
+    ENEMY_MISS("/enemy_miss"),
+    EXIT("/exit"),
+    ENEMY_SHOOT("/enemy_shoot");
 
     private final String key;
 

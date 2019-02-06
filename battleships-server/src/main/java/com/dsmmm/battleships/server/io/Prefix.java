@@ -6,9 +6,13 @@ package com.dsmmm.battleships.server.io;
 enum Prefix {
     CHAT("/chat"),
     SHOOT("/shoot"),
+    ENEMY_SHOOT("/enemy_shoot"),
     SHIPS("/ships"),
+    GENERATE("/generate"),
     HIT("/hit"),
-    GENERATE("/generate"), MISS("/miss");
+    ENEMY_HIT("/enemy_hit"),
+    MISS("/miss"),
+    ENEMY_MISS("/enemy_miss");
 
     private final String key;
 

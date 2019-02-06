@@ -46,6 +46,10 @@ class ClientInitializer {
         out.println(Prefix.SHOOT.cipher(x + "-" + y));
     }
 
+    void sendCoordinatesToEnemy(int x, int y) {
+        out.println(Prefix.ENEMY_SHOOT.cipher(x + "-" + y));
+    }
+
     void closeSocket() {
         try {
             echoSocket.close();

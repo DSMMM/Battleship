@@ -23,7 +23,7 @@ public class Fleet {
         shipsCoordinates.addAll(c);
     }
 
-    boolean takeShotOnFleet(Coordinates coordinates) {
+    public boolean takeShotOnFleet(Coordinates coordinates) {
         for (Ship ship : ships) {
             if (ship.takeShotOnShip(coordinates)) return true;
         }

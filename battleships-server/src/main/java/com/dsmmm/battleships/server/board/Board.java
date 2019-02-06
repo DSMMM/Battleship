@@ -36,6 +36,10 @@ public class Board {
         return stringBuilder.toString();
     }
 
+    public boolean takeShot(Coordinates coordinates) {
+        return fleet.takeShotOnFleet(coordinates);
+    }
+
     private void placeShips() {
         for (Coordinates coordinates : fleet.getShipsCoordinates()) {
             mapOfFields.put(coordinates, new NotShotMast());

@@ -1,6 +1,7 @@
 package com.dsmmm.battleships.server.io;
 
 
+import com.dsmmm.battleships.server.board.Coordinates;
 import com.dsmmm.battleships.server.game.Game;
 
 import java.io.PrintWriter;
@@ -30,7 +31,6 @@ public class Messenger {
 
     public void sendToBothPlayersChat(String message) {
         awayOut.println(Prefix.CHAT.cipher(message));
-        awayOut.println(Prefix.CHAT.cipher(message));
     }
 
     public void redirectMessage(PrintWriter homeOut, PrintWriter awayOut, String line) {
@@ -41,9 +41,25 @@ public class Messenger {
                 homeOut.println(line);
                 awayOut.println(line);
                 break;
+            case ENEMY_SHOOT:
+                printer.printInfo(line);
+                awayOut.println(Prefix.SHOOT.cipher(Prefix.decipher(line)));
+                break;
             case SHOOT:
                 printer.printInfo(line);
-                awayOut.println(Prefix.MISS.cipher(Prefix.decipher(line)));
+                String decipheredCoordinates = Prefix.decipher(line);
+                String[] coordinatesTable = decipheredCoordinates.split("-");
+                int column = Integer.parseInt(coordinatesTable[0]);
+                int row = Integer.parseInt(coordinatesTable[1]);
+                Coordinates coordinates = new Coordinates(column, row);
+                if(game.takeShot(coordinates)) {
+                    awayOut.println(Prefix.HIT.cipher(decipheredCoordinates));
+                    homeOut.println(Prefix.ENEMY_HIT.cipher(decipheredCoordinates));
+                }
+                else {
+                    awayOut.println(Prefix.MISS.cipher(decipheredCoordinates));
+                    homeOut.println(Prefix.ENEMY_MISS.cipher(decipheredCoordinates));
+                }
                 break;
             case GENERATE:
                 printer.printInfo("Fleet generated for user: " + Thread.currentThread().getName());

@@ -11,6 +11,22 @@ class ConsoleController implements Gameable {
     public void showEnemyHit(String toDecode) {
 
     }
+
+    @Override
+    public void showHit(String decipheredLine) {
+
+    }
+
+    @Override
+    public void showMiss(String decipheredLine) {
+
+    }
+
+    @Override
+    public void nowaMetoda(String decipheredLine) {
+
+    }
+
     @Override
     public void showEnemyMiss(String toDecode) {
 

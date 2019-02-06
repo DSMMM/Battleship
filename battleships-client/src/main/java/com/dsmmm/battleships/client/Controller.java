@@ -89,7 +89,7 @@ public class Controller implements Initializable, Gameable {
                 button.setPrefWidth(SIZE);
                 final int high = i + 1;
                 final int width = j + 1;
-                button.setOnAction(onFieldClickEvent(high, width, button));
+                button.setOnAction(onFieldClickEvent(high, width));
                 button.setId(high + "-" + width);
                 button.setDisable(true);
                 pane.getChildren().add(button);
@@ -122,16 +122,30 @@ public class Controller implements Initializable, Gameable {
 
     @Override
     public void showEnemyMiss(String toDecode) {
-        String codeButton = "#" + toDecode;
-        Button button = (Button) paneFleet.lookup(codeButton);
-        button.setStyle("-fx-background-color: blue; -fx-opacity: 1.0 !important;");
+        Button button = (Button) paneFleet.lookup("#" + toDecode);
+        colorButton(button, Colors.BLUE);
     }
 
     @Override
     public void showEnemyHit(String toDecode) {
-        String codeButton = "#" + toDecode;
-        Button button = (Button) paneFleet.lookup(codeButton);
-        button.setStyle("-fx-background-color: yellow; -fx-opacity: 1.0 !important;");
+        Button button = (Button) paneFleet.lookup("#" + toDecode);
+        colorButton(button, Colors.YELLOW);
+    }
+
+    @Override
+    public void showHit(String toDecode) {
+        Button button = (Button) paneEnemy.lookup("#" + toDecode);
+        colorButton(button, Colors.YELLOW);
+    }
+
+    @Override
+    public void showMiss(String toDecode) {
+        Button button = (Button) paneEnemy.lookup("#" + toDecode);
+        colorButton(button, Colors.BLUE);
+    }
+
+    private void colorButton(Button button, Colors color) {
+        button.setStyle("-fx-background-color: " + color.getColor() + "; -fx-opacity: 1.0 !important;");
     }
 
     private void reloadFleet(String toDecode) {
@@ -147,11 +161,16 @@ public class Controller implements Initializable, Gameable {
         client.requestGenerateFleet();
     }
 
-    private EventHandler<ActionEvent> onFieldClickEvent(int high, int width, Button button) {
-        return (ActionEvent event) -> {
-            client.sendCoordinates(high, width);
-            button.setStyle("-fx-background-color: black;");
-        };
+    private EventHandler<ActionEvent> onFieldClickEvent(int high, int width) {
+        return (ActionEvent event) -> client.sendCoordinatesToEnemy(high, width);
+    }
+
+    @Override
+    public void nowaMetoda(String decipheredLine) {
+        String[] coordinatesTable = decipheredLine.split("-");
+        int column = Integer.parseInt(coordinatesTable[0]);
+        int row = Integer.parseInt(coordinatesTable[1]);
+        client.sendCoordinates(column, row);
     }
 
     @Override

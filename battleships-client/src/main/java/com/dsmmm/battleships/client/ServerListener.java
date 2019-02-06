@@ -33,14 +33,25 @@ class ServerListener extends Thread {
                             break;
                         case MISS:
                             Printer.print(line);
-                            controller.showEnemyMiss(decipheredLine);
+                            controller.showMiss(decipheredLine);
                             break;
                         case HIT:
                             Printer.print(line);
+                            controller.showHit(decipheredLine);
+                            break;
+                        case ENEMY_HIT:
+                            Printer.print(line);
                             controller.showEnemyHit(decipheredLine);
+                            break;
+                        case ENEMY_MISS:
+                            Printer.print(line);
+                            controller.showEnemyMiss(decipheredLine);
                             break;
                         case SHIPS:
                             controller.showFleet(decipheredLine);
+                            break;
+                        case SHOOT:
+                            controller.nowaMetoda(decipheredLine);
                             break;
                         default:
                             Printer.print(line);
