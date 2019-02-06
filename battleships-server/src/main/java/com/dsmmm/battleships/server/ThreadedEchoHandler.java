@@ -14,7 +14,7 @@ class ThreadedEchoHandler implements Runnable {
     private final Socket home;
     private final Socket away;
 
-    private Printer printer = new Printer(this.getClass());
+    private final Printer printer = new Printer(this.getClass());
 
 
     ThreadedEchoHandler(Socket home, Socket away) {
@@ -34,6 +34,7 @@ class ThreadedEchoHandler implements Runnable {
 
             Messenger messenger = new Messenger(homeOut, awayOut);
             messenger.sendToFirstPlayerChat("Chat opened.");
+            printer.printInfo(Thread.currentThread().getName() + " started.");
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 messenger.redirectMessage(homeOut, awayOut, line);

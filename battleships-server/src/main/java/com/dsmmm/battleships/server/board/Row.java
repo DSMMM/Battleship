@@ -22,7 +22,6 @@ class Row implements Coordinate {
         return Objects.hash(value);
     }
 
-    @Override
     public Row increment(int y) {
         return new Row(value + y);
     }

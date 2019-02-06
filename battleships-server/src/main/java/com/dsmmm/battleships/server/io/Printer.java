@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Printer {
 
-    private Logger log;
+    private final Logger log;
 
     public Printer(Class clazz) {
         log = LogManager.getLogger(clazz);

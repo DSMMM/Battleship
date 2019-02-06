@@ -1,19 +1,18 @@
 package com.dsmmm.battleships.client;
 
 import com.dsmmm.battleships.client.io.Prefix;
-import javafx.scene.control.TextArea;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 class ServerListener extends Thread {
-    private final TextArea chatId;
-    private final Controller controller;
+    private final ClientTalkable chat;
+    private final Gameable controller;
     private final BufferedReader bufferedReader;
-    private ClientInitializer clientInitializer;
+    private final ClientInitializer clientInitializer;
 
-    ServerListener(TextArea chatId, Controller controller, BufferedReader bufferedReader, ClientInitializer clientInitializer) {
-        this.chatId = chatId;
+    ServerListener(ClientTalkable chat, Gameable controller, BufferedReader bufferedReader, ClientInitializer clientInitializer) {
+        this.chat = chat;
         this.controller = controller;
         this.bufferedReader = bufferedReader;
         this.clientInitializer = clientInitializer;
@@ -21,16 +20,16 @@ class ServerListener extends Thread {
 
     @Override
     public void run() {
-        synchronized (this) {
-            try {
+        try {
+            synchronized (this) {
                 String line;
-                while ((line = bufferedReader.readLine())!=null) {
+                while ((line = bufferedReader.readLine()) != null) {
                     wait(1);
                     Prefix type = Prefix.getType(line);
                     String decipheredLine = Prefix.decipher(line);
                     switch (type) {
                         case CHAT:
-                            chatId.appendText(decipheredLine + "\n");
+                            chat.appendText(decipheredLine + "\n");
                             break;
                         case SHOOT:
                             Printer.print(line);
@@ -44,13 +43,12 @@ class ServerListener extends Thread {
                             break;
                     }
                 }
-            } catch (IOException e) {
-                Printer.print("Kuniec");
-            } catch (InterruptedException e) {
-                //TODO: do poprawy
-                Thread.currentThread().interrupt();
-                Printer.print("Zatrzymano wątek " + Thread.currentThread().getName());
             }
+        } catch (IOException e) {
+            Printer.print("Kuniec, użytkownik wyszedł");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            Printer.print("Zatrzymano wątek " + Thread.currentThread().getName());
         }
     }
 

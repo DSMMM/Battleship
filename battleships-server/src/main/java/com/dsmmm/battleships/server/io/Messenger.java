@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 public class Messenger {
     private final PrintWriter homeOut;
     private final PrintWriter awayOut;
-    private Printer printer = new Printer(this.getClass());
+    private final Printer printer = new Printer(this.getClass());
 
     public Messenger(PrintWriter homeOut, PrintWriter awayOut) {
         this.homeOut = homeOut;
@@ -43,6 +43,7 @@ public class Messenger {
                 awayOut.println(line);
                 break;
             case GENERATE:
+                printer.printInfo("Fleet generated for user: " + Thread.currentThread().getName());
                 homeOut.println(Prefix.SHIPS.cipher(new Board().generateCodesOfShipCoordinates()));
                 break;
             default:
