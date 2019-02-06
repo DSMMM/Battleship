@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ChatFX extends Application {
-    private static Thread serverListener;
+    private static ServerListener serverListener;
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    static void setServerListener(Thread threadToListen) {
+    static void setServerListener(ServerListener threadToListen) {
         if (serverListener == null) {
             serverListener = threadToListen;
         }
@@ -40,6 +40,7 @@ public class ChatFX extends Application {
             //TODO: to nie do końca działa ;) trzeba zamknąć połączenie z serwerem.
             if (serverListener != null) {
                 serverListener.interrupt();
+                serverListener.closeSocket();
             }
         });
         primaryStage.show();
