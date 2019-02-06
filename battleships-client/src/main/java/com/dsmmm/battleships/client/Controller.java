@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 
 @SuppressWarnings("WeakerAccess")
-public class Controller implements Initializable {
+public class Controller implements Initializable, Gameable {
 
     private static final double SIZE = 30.0d;
 
@@ -59,8 +59,10 @@ public class Controller implements Initializable {
         }
     }
 
-    private void proceedConnection() {
-        client.makeListenerThread(chatId, this);
+    public void proceedConnection() {
+        ServerListener listenerThread = client.makeListenerThread(new GuiChat(chatId), this);
+        listenerThread.start();
+        ChatFX.setServerListener(listenerThread);
         joinId.setDisable(true);
         nameId.setDisable(true);
         enableBoard(paneEnemy);
@@ -113,7 +115,7 @@ public class Controller implements Initializable {
         }
     }
 
-    void showFleet(String toDecode) {
+    public void showFleet(String toDecode) {
         Platform.runLater(this::resetFleet);
         Platform.runLater(() -> reloadFleet(toDecode));
     }
