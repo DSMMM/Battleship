@@ -23,7 +23,8 @@ class ClientInitializer {
 
     boolean connectWithServer() {
         try {
-            echoSocket = new Socket("localhost", 8189);
+            //TODO - zastąpić serverem vps
+            echoSocket = new Socket("vps645601.ovh.net", 8189);
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             bufferedReader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));

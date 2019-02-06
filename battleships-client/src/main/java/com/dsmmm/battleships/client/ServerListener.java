@@ -34,7 +34,7 @@ class ServerListener extends Thread {
                             break;
                         case SHOOT:
                             Printer.print(line);
-                            controller.marcinekPomalujPrzycisk(decipheredLine);
+                            controller.showEnemyShot(decipheredLine);
                             break;
                         case SHIPS:
                             controller.showFleet(decipheredLine);
