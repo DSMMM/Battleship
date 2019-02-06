@@ -106,6 +106,15 @@ public class Controller implements Initializable, Gameable {
         }
     }
 
+    private void disableBoard(Pane pane) {
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
+                Button button = (Button) pane.lookup("#" + i + "-" + j);
+                button.setDisable(true);
+            }
+        }
+    }
+
     private void resetFleet() {
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= 10; j++) {
@@ -162,7 +171,10 @@ public class Controller implements Initializable, Gameable {
     }
 
     private EventHandler<ActionEvent> onFieldClickEvent(int high, int width) {
-        return (ActionEvent event) -> client.sendCoordinatesToEnemy(high, width);
+        return (ActionEvent event) -> {
+            client.sendCoordinatesToEnemy(high, width);
+            disableBoard(paneEnemy);
+        };
     }
 
     @Override
@@ -171,6 +183,7 @@ public class Controller implements Initializable, Gameable {
         int column = Integer.parseInt(coordinatesTable[0]);
         int row = Integer.parseInt(coordinatesTable[1]);
         client.sendCoordinates(column, row);
+        enableBoard(paneEnemy);
     }
 
     @Override
