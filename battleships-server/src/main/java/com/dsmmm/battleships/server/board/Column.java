@@ -22,7 +22,6 @@ class Column implements Coordinate {
         return Objects.hash(value);
     }
 
-    @Override
     public Column increment(int x) {
         return new Column(value + x);
     }

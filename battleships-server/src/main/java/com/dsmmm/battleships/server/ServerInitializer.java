@@ -16,10 +16,10 @@ import java.util.concurrent.Executors;
 class ServerInitializer {
 
     private final ExecutorService threadPool;
-    private Printer printer = new Printer(this.getClass());
+    private final Printer printer = new Printer(this.getClass());
 
     ServerInitializer() {
-        threadPool = Executors.newFixedThreadPool(10, new ClientThreadsFactory());
+        threadPool = Executors. newCachedThreadPool(new ClientThreadsFactory());
     }
 
     @SuppressWarnings("InfiniteLoopStatement")

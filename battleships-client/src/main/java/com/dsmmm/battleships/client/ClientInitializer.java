@@ -2,7 +2,6 @@ package com.dsmmm.battleships.client;
 
 
 import com.dsmmm.battleships.client.io.Prefix;
-import javafx.scene.control.TextArea;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,18 +44,16 @@ class ClientInitializer {
     void sendCoordinates(int x, int y) {
         out.println(Prefix.SHOOT.cipher(x + " " + y));
     }
-    void closeSocket(){
+
+    void closeSocket() {
         try {
             echoSocket.close();
         } catch (IOException e) {
-            System.out.println("Zamknięto gniazdo");
+            Printer.print("Zamknięto gniazdo");
         }
     }
 
-    void makeListenerThread(TextArea chatId, Controller controller) {
-        ServerListener serverListener = new ServerListener(chatId, controller, bufferedReader,this);
-        serverListener.setName("server listener");
-        serverListener.start();
-        ChatFX.setServerListener(serverListener);
+    ServerListener makeListenerThread(ClientTalkable chat, Gameable controller) {
+        return new ServerListener(chat, controller, bufferedReader, this);
     }
 }
