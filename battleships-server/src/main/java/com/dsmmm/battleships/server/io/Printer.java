@@ -18,6 +18,4 @@ public class Printer {
     public void printError(String message) {
         log.error(message);
     }
-
-
 }

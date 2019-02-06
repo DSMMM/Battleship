@@ -44,11 +44,11 @@ class ServerListener extends Thread {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("Kuniec");
+                Printer.print("Kuniec");
             } catch (InterruptedException e) {
                 //TODO: do poprawy
                 Thread.currentThread().interrupt();
-                System.out.println("Zatrzymano wątek " + Thread.currentThread().getName());
+                Printer.print("Zatrzymano wątek " + Thread.currentThread().getName());
             }
         }
     }
