@@ -6,15 +6,17 @@ import javafx.scene.control.TextArea;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-class ServerListener implements Runnable {
+class ServerListener extends Thread {
     private final TextArea chatId;
     private final Controller controller;
     private final BufferedReader bufferedReader;
+    private ClientInitializer clientInitializer;
 
-    ServerListener(TextArea chatId, Controller controller, BufferedReader bufferedReader) {
+    ServerListener(TextArea chatId, Controller controller, BufferedReader bufferedReader, ClientInitializer clientInitializer) {
         this.chatId = chatId;
         this.controller = controller;
         this.bufferedReader = bufferedReader;
+        this.clientInitializer = clientInitializer;
     }
 
     @Override
@@ -22,8 +24,8 @@ class ServerListener implements Runnable {
         synchronized (this) {
             try {
                 String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    wait(10);
+                while ((line = bufferedReader.readLine())!=null) {
+                    wait(1);
                     Prefix type = Prefix.getType(line);
                     String decipheredLine = Prefix.decipher(line);
                     switch (type) {
@@ -42,13 +44,16 @@ class ServerListener implements Runnable {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("uuuu");
-                e.printStackTrace();
+                System.out.println("Kuniec");
             } catch (InterruptedException e) {
                 //TODO: do poprawy
                 Thread.currentThread().interrupt();
                 System.out.println("Zatrzymano wątek " + Thread.currentThread().getName());
             }
         }
+    }
+
+    void closeSocket() {
+        clientInitializer.closeSocket();
     }
 }

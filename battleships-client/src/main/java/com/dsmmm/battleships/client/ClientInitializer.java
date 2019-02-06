@@ -15,6 +15,7 @@ class ClientInitializer {
     private final String name;
     private PrintWriter out;
     private BufferedReader bufferedReader;
+    private Socket echoSocket;
 
     ClientInitializer(String name) {
         this.name = name;
@@ -22,7 +23,7 @@ class ClientInitializer {
 
     boolean connectWithServer() {
         try {
-            Socket echoSocket = new Socket("localhost", 8189);
+            echoSocket = new Socket("localhost", 8189);
             //TODO: zapisywanie konfiguracji serwera w pliku konfiguracyjnym
             out = new PrintWriter(echoSocket.getOutputStream(), true);
             bufferedReader = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
@@ -44,9 +45,17 @@ class ClientInitializer {
     void sendCoordinates(int x, int y) {
         out.println(Prefix.SHOOT.cipher(x + " " + y));
     }
+    void closeSocket(){
+        try {
+            echoSocket.close();
+        } catch (IOException e) {
+            System.out.println("Zamknięto gniazdo");
+        }
+    }
 
     void makeListenerThread(TextArea chatId, Controller controller) {
-        Thread serverListener = new Thread(new ServerListener(chatId, controller, bufferedReader), "server listener");
+        ServerListener serverListener = new ServerListener(chatId, controller, bufferedReader,this);
+        serverListener.setName("server listener");
         serverListener.start();
         ChatFX.setServerListener(serverListener);
     }

@@ -8,7 +8,8 @@ public enum Prefix {
     SHOOT("/shoot"),
     SHIPS("/ships"),
     HIT("/hit"),
-    GENERATE("/generate");
+    GENERATE("/generate"),
+    EXIT("/exit");
 
     private final String key;
 
